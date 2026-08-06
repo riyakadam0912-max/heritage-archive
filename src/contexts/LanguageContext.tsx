@@ -1,11 +1,12 @@
 import { createContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import en from '../translations/en.json';
-import mr from '../translations/mr.json';
+import en from '../translations/en';
+import mr from '../translations/mr';
+import type { Translation } from '../translations/types';
 
 export type Locale = 'en' | 'mr';
 
-const translations = { en, mr } as const;
+const translations: Record<string, Translation> = { en, mr } as const;
 
 interface LanguageContextValue {
   locale: Locale;

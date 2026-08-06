@@ -2,9 +2,27 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Volume2, ChevronDown, ChevronUp } from 'lucide-react';
 import { mockTrustData } from '../constants/mockData';
+import { useLanguage } from '../hooks/useLanguage';
+import type { TimelineEvent } from '../types/content';
 
 export default function Timeline() {
-  const { timelineEvents } = mockTrustData;
+  const { t } = useLanguage();
+  // Merge technical timeline events with localized translations by year (translations override text)
+  const timelineEvents: TimelineEvent[] = (() => {
+    const tech = mockTrustData.timelineEvents || [];
+    const localized = t.timeline.events || [];
+
+    const merged = tech.map((event) => {
+      const matching = localized.find((localEvent) => localEvent.year === event.year);
+      return { ...event, ...(matching ?? {}) };
+    });
+
+    const unmatchedLocalized = localized.filter(
+      (localEvent) => !tech.some((event) => event.year === localEvent.year)
+    );
+
+    return [...merged, ...unmatchedLocalized].sort((a, b) => a.year - b.year) as TimelineEvent[];
+  })();
   const [expandedEventId, setExpandedEventId] = useState<number | null>(null);
 
   const toggleExpand = (year: number) => {
@@ -18,11 +36,9 @@ export default function Timeline() {
   return (
     <section id="timeline">
       <div className="legacy-intro">
-        <span className="section-label">Chronology of Grace</span>
-        <h2 className="section-title">History & Milestones</h2>
-        <p className="story-text">
-          A chronologically indexed chronicle of the Shree Bhagavati shrine construction, community deeds, and trust governance.
-        </p>
+        <span className="section-label">{t.timeline.sectionLabel}</span>
+        <h2 className="section-title">{t.timeline.title}</h2>
+        <p className="story-text">{t.timeline.intro}</p>
       </div>
 
       <div className="timeline-container">
@@ -39,7 +55,9 @@ export default function Timeline() {
               onClick={() => toggleExpand(event.year)}
               role="button"
               aria-expanded={isExpanded}
-              aria-label={`Timeline event for year ${event.year}: ${event.title}`}
+              aria-label={t.accessibility.timelineEventFor
+                .replace('{year}', String(event.year))
+                .replace('{title}', event.title)}
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -56,9 +74,12 @@ export default function Timeline() {
               {/* Event Card */}
               <div className="timeline-content-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="timeline-year">{event.year} AD</span>
-                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  <span className="timeline-year">{event.year} {t.timeline.yearSuffix ?? ''}</span>
+                  <div>
+                    {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  </div>
                 </div>
+
                 <h3 className="timeline-title">{event.title}</h3>
                 <p className="timeline-desc">{event.description}</p>
 
@@ -78,11 +99,11 @@ export default function Timeline() {
                         <div>
                           <div className="timeline-doc-link">
                             <FileText size={16} />
-                            <span>Attached Document: {event.documentTitle || 'Historical Record Scan'}</span>
+                            <span>{t.timeline.attachedDocumentLabel} {event.documentTitle || ''}</span>
                           </div>
                           <img
                             src={event.documentUrl}
-                            alt={event.documentTitle || 'Archived Document Scan'}
+                            alt={event.documentTitle || t.timeline.documentScanAlt}
                             className="timeline-doc-preview"
                             style={{ marginTop: '10px' }}
                           />
@@ -105,7 +126,7 @@ export default function Timeline() {
                             style={{ color: 'var(--leaf-green)', marginBottom: '8px' }}
                           >
                             <Volume2 size={16} />
-                            <span>Oral History Soundclip Excerpt</span>
+                            <span>{t.timeline.audioLabel}</span>
                           </div>
                           {event.audioTranscript && (
                             <p style={{ fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>

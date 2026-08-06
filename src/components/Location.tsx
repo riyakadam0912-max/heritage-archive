@@ -1,17 +1,33 @@
 import { MapPin, Compass, Info, Clock } from 'lucide-react';
+import cityViewImage from '../assets/images/cityview.jfif';
 import { mockTrustData } from '../constants/mockData';
+import { useLanguage } from '../hooks/useLanguage';
+import { resolveAssetUrl } from '../utils/image';
 
 export default function Location() {
+  const { t } = useLanguage();
   const { locationDetails } = mockTrustData;
+  const safeLocationDetails = locationDetails ?? { address: '', landmarks: [], parking: '', visitingHours: '', mapEmbedUrl: '' };
+  const locationText = t.location ?? {
+    sectionLabel: '',
+    title: '',
+    intro: '',
+    addressLabel: '',
+    visitingHoursLabel: '',
+    landmarksLabel: '',
+    parkingLabel: '',
+    address: '',
+    landmarks: [],
+    parking: '',
+    visitingHours: '',
+  };
 
   return (
     <section id="location">
       <div className="legacy-intro">
-        <span className="section-label">Pilgrimage</span>
-        <h2 className="section-title">Temple Location & Visiting Hours</h2>
-        <p className="story-text">
-          Guidelines and maps to assist descendants and pilgrims visiting the Shree Bhagavati shrine in Ratnagiri.
-        </p>
+        <span className="section-label">{t.location?.sectionLabel}</span>
+        <h2 className="section-title">{t.location?.title}</h2>
+        <p className="story-text">{t.location?.intro}</p>
       </div>
 
       <div className="location-grid">
@@ -20,26 +36,26 @@ export default function Location() {
           {/* Address */}
           <div className="location-item">
             <h3 className="location-label">
-              <MapPin size={20} strokeWidth={1.5} /> Address
+              <MapPin size={20} strokeWidth={1.5} /> {t.location?.addressLabel}
             </h3>
-            <p className="location-value">{locationDetails.address}</p>
+            <p className="location-value">{safeLocationDetails.address ?? locationText.address}</p>
           </div>
 
           {/* Visiting Hours */}
           <div className="location-item">
             <h3 className="location-label">
-              <Clock size={20} strokeWidth={1.5} /> Visiting Hours
+              <Clock size={20} strokeWidth={1.5} /> {t.location?.visitingHoursLabel}
             </h3>
-            <p className="location-value">{locationDetails.visitingHours}</p>
+            <p className="location-value">{safeLocationDetails.visitingHours ?? locationText.visitingHours}</p>
           </div>
 
           {/* Landmarks */}
           <div className="location-item">
             <h3 className="location-label">
-              <Compass size={20} strokeWidth={1.5} /> Landmarks
+              <Compass size={20} strokeWidth={1.5} /> {t.location?.landmarksLabel}
             </h3>
             <ul className="location-landmarks-list">
-              {locationDetails.landmarks.map((landmark, idx) => (
+              {(safeLocationDetails.landmarks ?? locationText.landmarks ?? []).map((landmark, idx) => (
                 <li key={idx} className="location-value">
                   {landmark}
                 </li>
@@ -50,24 +66,23 @@ export default function Location() {
           {/* Parking Policy */}
           <div className="location-item">
             <h3 className="location-label">
-              <Info size={20} strokeWidth={1.5} /> Environment & Parking
+              <Info size={20} strokeWidth={1.5} /> {t.location?.parkingLabel}
             </h3>
             <p className="location-value" style={{ fontStyle: 'italic' }}>
-              {locationDetails.parking}
+              {safeLocationDetails.parking ?? locationText.parking}
             </p>
           </div>
         </div>
 
         {/* Google Maps Frame */}
         <div className="map-wrapper">
-          <iframe
-            title="Shree Bhagavati Devi Temple Map Location"
-            src={locationDetails.mapEmbedUrl}
+          <img
+            src={resolveAssetUrl(safeLocationDetails.imageUrl ?? cityViewImage)}
+            alt={t.location?.title ?? 'Shree Bhagavati Devi Temple Location'}
             className="map-iframe"
-            allowFullScreen
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+            decoding="async"
+          />
         </div>
       </div>
     </section>

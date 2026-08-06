@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bell, Clock } from 'lucide-react';
 import { mockTrustData } from '../constants/mockData';
+import { useLanguage } from '../hooks/useLanguage';
 import { resolveAssetUrl } from '../utils/image';
 
 export default function Temple() {
-  const { templeArchitecture, templeRituals, galleryItems } = mockTrustData;
+  const { galleryItems } = mockTrustData;
+  const { t } = useLanguage();
+  const templeArchitecture = t.temple.architecture;
+  const templeRituals = t.temple.rituals;
   const [isBellSwinging, setIsBellSwinging] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -126,8 +130,8 @@ export default function Temple() {
             className="temple-bell-indicator"
             onClick={triggerBell}
             type="button"
-            title="Ring temple bell"
-            aria-label="Ring Temple Bell"
+            title={t.temple.ringBellAria}
+            aria-label={t.temple.ringBellAria}
           >
             <Bell className={isBellSwinging ? 'bell-swinging' : ''} size={24} />
           </button>
@@ -138,7 +142,7 @@ export default function Temple() {
 
             <img
               src={resolveAssetUrl(templeImg)}
-              alt="Temple Red Laterite Architecture"
+              alt={t.temple.imageAlt}
               loading="lazy"
               decoding="async"
             />
@@ -152,7 +156,7 @@ export default function Temple() {
               fontStyle: 'italic',
             }}
           >
-            *Click the bell icon to ring. Sacred incense smoke rises from the courtyard below.
+            {t.temple.bellNote}
           </div>
         </motion.div>
 
@@ -165,8 +169,8 @@ export default function Temple() {
           style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}
         >
           <div>
-            <span className="section-label">Temple Architecture</span>
-            <h2 className="section-title">The Sacred Sanctuary</h2>
+            <span className="section-label">{t.temple.sectionLabel}</span>
+            <h2 className="section-title">{t.temple.title}</h2>
             <p style={{ lineHeight: 1.8, textAlign: 'justify' }}>{templeArchitecture}</p>
           </div>
 
@@ -185,7 +189,7 @@ export default function Temple() {
               }}
             >
               <Clock size={22} strokeWidth={1.5} />
-              Daily Nitya Vidhi
+              {t.temple.dailyTitle}
             </h3>
 
             <div className="ritual-schedule">

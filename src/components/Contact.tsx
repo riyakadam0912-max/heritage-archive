@@ -1,16 +1,32 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { mockTrustData } from '../constants/mockData';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function Contact() {
   const { contactDetails } = mockTrustData;
+  const { t } = useLanguage();
+  const safeContactDetails = contactDetails ?? { phone: '', email: '' };
+  const locationText = t.location ?? {
+    sectionLabel: t.contact.sectionLabel,
+    title: t.contact.title,
+    intro: '',
+    addressLabel: '',
+    visitingHoursLabel: '',
+    landmarksLabel: '',
+    parkingLabel: '',
+    address: '',
+    landmarks: [],
+    parking: '',
+    visitingHours: '',
+  };
 
   return (
     <section id="contact">
       <div className="legacy-intro" style={{ textAlign: 'center', margin: '0 auto 40px' }}>
-        <span className="section-label">Stewardship</span>
-        <h2 className="section-title">Contact The Office</h2>
+        <span className="section-label">{t.contact?.sectionLabel}</span>
+        <h2 className="section-title">{t.contact?.title}</h2>
         <p className="story-text" style={{ maxWidth: '600px', margin: '0 auto' }}>
-          For inquiries regarding document research, scholarship application submissions, or lineage updates.
+          {t.contact?.subtitle}
         </p>
       </div>
 
@@ -18,38 +34,38 @@ export default function Contact() {
         {/* Phone */}
         <div className="contact-card">
           <Phone size={28} strokeWidth={1.2} />
-          <h3 className="contact-card-title">Phone Contact</h3>
+          <h3 className="contact-card-title">{t.contact?.phoneLabel}</h3>
           <p className="contact-card-value" style={{ fontFamily: 'monospace' }}>
-            {contactDetails.phone}
+            {safeContactDetails.phone}
           </p>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            Available Mon – Sat: 09:00 AM – 05:00 PM
+            {t.common.availableHours}
           </span>
         </div>
 
         {/* Email */}
         <div className="contact-card">
           <Mail size={28} strokeWidth={1.2} />
-          <h3 className="contact-card-title">Electronic Mail</h3>
+          <h3 className="contact-card-title">{t.contact?.emailLabel}</h3>
           <p className="contact-card-value">
-            <a href={`mailto:${contactDetails.email}`} style={{ borderBottom: '1px dashed' }}>
-              {contactDetails.email}
+            <a href={`mailto:${safeContactDetails.email}`} style={{ borderBottom: '1px dashed' }}>
+              {safeContactDetails.email}
             </a>
           </p>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            We respond to heritage queries within 48 hours
+            {t.common.emailResponseTime}
           </span>
         </div>
 
         {/* Office Address */}
         <div className="contact-card">
           <MapPin size={28} strokeWidth={1.2} />
-          <h3 className="contact-card-title">Ancestral Office</h3>
+          <h3 className="contact-card-title">{t.contact?.officeLabel}</h3>
           <p className="contact-card-value" style={{ lineHeight: 1.5 }}>
-            {contactDetails.officeAddress}
+            {locationText.address}
           </p>
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            Located directly adjacent to the temple hall
+            {(locationText.landmarks ?? []).join(', ')}
           </span>
         </div>
       </div>

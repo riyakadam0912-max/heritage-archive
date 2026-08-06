@@ -60,7 +60,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar" role="navigation" aria-label="Main Navigation">
+    <nav className="navbar" role="navigation" aria-label={t.navigation.title}>
       <div className="nav-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <div className="logo-container">
           <div className="logo-border"></div>
@@ -69,10 +69,10 @@ export default function Navbar() {
             className="logo-inner"
             style={{ backgroundImage: `url(${resolveAssetUrl(mockTrustData.logoUrl)})` }}
             role="img"
-            aria-label="Bhagavati Devi Trust Logo"
+            aria-label={t.accessibility.logoAlt}
           ></div>
         </div>
-        <span className="nav-title">भगवती देवस्थान</span>
+        <span className="nav-title">{t.navigation.title}</span>
       </div>
 
       {/* Desktop Links */}
@@ -80,12 +80,12 @@ export default function Navbar() {
         <button
           className="lang-switcher"
           onClick={() => setLanguage(locale === 'en' ? 'mr' : 'en')}
-          aria-label={`Switch language to ${locale === 'en' ? 'Marathi' : 'English'}`}
+          aria-label={locale === 'en' ? t.common.langMarathi : t.common.langEnglish}
           aria-pressed={locale === 'mr'}
           type="button"
         >
           <Languages size={16} />
-          <span>{locale === 'en' ? 'मराठी' : 'English'}</span>
+          <span>{locale === 'en' ? t.common.langMarathi : t.common.langEnglish}</span>
         </button>
 
         <ul className="nav-links">
@@ -94,9 +94,9 @@ export default function Navbar() {
               key={item.target}
               className={`nav-item ${activeSection === item.target ? 'active' : ''}`}
             >
-              <a href={`#${item.target}`} onClick={(e) => handleNavClick(e, item.target)}>
-                {t.nav[item.key as keyof typeof t.nav]}
-              </a>
+                    <a href={`#${item.target}`} onClick={(e) => handleNavClick(e, item.target)}>
+                  {t.nav?.[item.key as keyof typeof t.nav] ?? t.navigation.items[item.key as keyof typeof t.navigation.items] ?? ''}
+                </a>
             </li>
           ))}
         </ul>
@@ -107,7 +107,7 @@ export default function Navbar() {
         className="mobile-menu-btn"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-expanded={isMobileMenuOpen}
-        aria-label="Toggle Navigation Menu"
+        aria-label={t.accessibility.toggleMenu}
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -151,7 +151,7 @@ export default function Navbar() {
                     fontWeight: 500,
                   }}
                 >
-                  {t.nav[item.key as keyof typeof t.nav]}
+                  {t.nav?.[item.key as keyof typeof t.nav] ?? t.navigation.items[item.key as keyof typeof t.navigation.items] ?? ''}
                 </a>
               </li>
             ))}

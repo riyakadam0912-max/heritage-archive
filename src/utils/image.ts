@@ -6,11 +6,15 @@ export function resolveAssetUrl(url?: string | null): string {
   const normalizedUrl = url.trim();
   if (!normalizedUrl) return '';
 
-  if (/^(https?:)?\/\//i.test(normalizedUrl) || normalizedUrl.startsWith('data:') || normalizedUrl.startsWith('blob:')) {
+  if (normalizedUrl.startsWith('data:') || normalizedUrl.startsWith('blob:')) {
     return normalizedUrl;
   }
 
   if (normalizedUrl.startsWith('/')) {
+    return normalizedUrl;
+  }
+
+  if (/^https?:\/\//i.test(normalizedUrl)) {
     return normalizedUrl;
   }
 

@@ -1,9 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Volume2 } from 'lucide-react';
+import { useLanguage } from '../hooks/useLanguage';
 import { mockTrustData } from '../constants/mockData';
+import type { OralHistory as OralHistoryType } from '../types/content';
 
 export default function OralHistory() {
-  const { oralHistories } = mockTrustData;
+  const { t } = useLanguage();
+  // Merge technical oral history items with localized transcripts by id
+  const oralHistories: OralHistoryType[] = (mockTrustData.oralHistories || []).map((o) => {
+    const localized = t.oralHistory.items.find((li) => li.id === o.id);
+    return {
+      ...o,
+      transcriptEnglish: localized?.transcriptEnglish ?? '',
+      transcriptMarathi: localized?.transcriptMarathi ?? '',
+      ...(localized ?? {}),
+    } as OralHistoryType;
+  });
   const [activeOralId, setActiveOralId] = useState<string>(oralHistories[0]?.id || '');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -139,11 +151,9 @@ export default function OralHistory() {
   return (
     <section id="oral-history">
       <div className="legacy-intro">
-        <span className="section-label">Oral Heritage</span>
-        <h2 className="section-title">Elders' Oral History Archive</h2>
-        <p className="story-text">
-          Listen to the voice recordings and memories of our elder generations, preserving the old Marathi tales and family wisdom.
-        </p>
+        <span className="section-label">{t.oralHistory.sectionLabel}</span>
+        <h2 className="section-title">{t.oralHistory.title}</h2>
+        <p className="story-text">{t.oralHistory.intro}</p>
       </div>
 
       {/* Grid containing list & active player */}
@@ -168,18 +178,18 @@ export default function OralHistory() {
                 {oral.speaker}
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{oral.relationship}</p>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontSize: '0.8rem',
-                  color: 'var(--accent-gold)',
-                  marginTop: '10px',
-                }}
-              >
-                <Volume2 size={14} /> Duration: {oral.audioDuration} mins
-              </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.8rem',
+                    color: 'var(--accent-gold)',
+                    marginTop: '10px',
+                  }}
+                >
+                  <Volume2 size={14} /> {t.oralHistory.durationLabel} {oral.audioDuration}
+                </div>
             </div>
           ))}
         </div>
@@ -203,7 +213,7 @@ export default function OralHistory() {
                 <button
                   className="audio-play-btn"
                   onClick={handlePlayToggle}
-                  aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
+                  aria-label={isPlaying ? t.oralHistory.pauseAria : t.oralHistory.playAria}
                 >
                   {isPlaying ? <Pause size={20} /> : <Play size={20} style={{ marginLeft: '3px' }} />}
                 </button>
@@ -224,13 +234,13 @@ export default function OralHistory() {
                 className={`transcript-tab-btn ${activeTab === 'english' ? 'active' : ''}`}
                 onClick={() => setActiveTab('english')}
               >
-                English Transcript
+                {t.oralHistory.transcriptTabs.english}
               </button>
               <button
                 className={`transcript-tab-btn ${activeTab === 'marathi' ? 'active' : ''}`}
                 onClick={() => setActiveTab('marathi')}
               >
-                Marathi Translation
+                {t.oralHistory.transcriptTabs.marathi}
               </button>
             </div>
 

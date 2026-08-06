@@ -1,32 +1,23 @@
-# React + TypeScript + Vite
+# Heritage Archive
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A production-grade React, TypeScript, and Vite experience for the Shree Bhagavati Devi Family Trust heritage archive.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Typed locale system with English and Marathi translations
+- Accessible gallery and lightbox experience
+- Responsive, production-ready sections for heritage storytelling
+- SEO metadata and deployment-oriented build configuration
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `npm install`
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npx tsc --noEmit`
 
-## Expanding the Oxlint configuration
+## Production notes
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- The project is intentionally structured to preserve the approved visual identity and behavior.
+- The current build is suitable for Vercel deployment with static hosting.

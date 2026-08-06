@@ -1,5 +1,6 @@
 import { X, Heart, Shield, Award } from 'lucide-react';
 import type { FamilyMember } from '../constants/mockData';
+import { useLanguage } from '../hooks/useLanguage';
 import { resolveAssetUrl } from '../utils/image';
 
 interface BiographyDrawerProps {
@@ -8,6 +9,7 @@ interface BiographyDrawerProps {
 }
 
 export default function BiographyDrawer({ member, onClose }: BiographyDrawerProps) {
+  const { t } = useLanguage();
   if (!member) return null;
 
   return (
@@ -16,7 +18,7 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`Biography details for ${member.name}`}
+      aria-label={t.accessibility.biographyFor.replace('{name}', member.name)}
     >
       <div
         className="biography-drawer"
@@ -29,7 +31,7 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
         <button
           className="drawer-close-btn"
           onClick={onClose}
-          aria-label="Close details"
+          aria-label={t.common.close}
         >
           <X size={28} />
         </button>
@@ -63,7 +65,7 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
 
         {/* Narrative Biography */}
         <div>
-          <h3 className="drawer-list-title">Historical Narrative</h3>
+          <h3 className="drawer-list-title">{t.biography.narrativeTitle}</h3>
           <p className="drawer-bio-p">{member.bio}</p>
         </div>
 
@@ -71,7 +73,7 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
         <div>
           <h3 className="drawer-list-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Award size={18} strokeWidth={1.5} />
-            Key Contributions
+            {t.biography.contributionsTitle}
           </h3>
           <ul style={{ listStyle: 'none', paddingLeft: '5px' }}>
             {member.contributions.map((contrib, idx) => (
@@ -98,7 +100,7 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
           <div>
             <h3 className="drawer-list-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Shield size={18} strokeWidth={1.5} />
-              Archived Anecdotes
+              {t.biography.anecdotesTitle}
             </h3>
             {member.stories.map((story, idx) => (
               <p
@@ -126,22 +128,22 @@ export default function BiographyDrawer({ member, onClose }: BiographyDrawerProp
           <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1.5px solid rgba(194, 166, 121, 0.2)' }}>
             <h3 className="drawer-list-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Heart size={18} strokeWidth={1.5} />
-              Lineage Context
+              {t.biography.lineageTitle}
             </h3>
             <div style={{ display: 'flex', gap: '30px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
               {member.parents && member.parents.length > 0 && (
                 <div>
-                  <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', display: 'block' }}>Parentage</span>
+                  <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', display: 'block' }}>{t.biography.parentageLabel}</span>
                   <span style={{ color: 'var(--text-brown)', fontWeight: 500 }}>
-                    {member.parents.map((p) => p.replace('gen', 'Generation ')).join(', ')}
+                    {member.parents.map((p) => p.replace('gen', t.biography.generationPrefix)).join(', ')}
                   </span>
                 </div>
               )}
               {member.children && member.children.length > 0 && (
                 <div>
-                  <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', display: 'block' }}>Offspring</span>
+                  <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', display: 'block' }}>{t.biography.offspringLabel}</span>
                   <span style={{ color: 'var(--text-brown)', fontWeight: 500 }}>
-                    {member.children.map((c) => c.replace('gen', 'Generation ')).join(', ')}
+                    {member.children.map((c) => c.replace('gen', t.biography.generationPrefix)).join(', ')}
                   </span>
                 </div>
               )}

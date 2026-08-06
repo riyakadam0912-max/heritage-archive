@@ -7,6 +7,8 @@ import DecorativeDivider from './components/DecorativeDivider';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
+import { mockTrustData } from './constants/mockData';
+import { resolveAssetUrl } from './utils/image';
 
 const AboutTrust = lazy(() => import('./components/AboutTrust'));
 const BhagavatiDevi = lazy(() => import('./components/BhagavatiDevi'));
@@ -24,9 +26,10 @@ const Location = lazy(() => import('./components/Location'));
 const Contact = lazy(() => import('./components/Contact'));
 
 function LoadingSections() {
+  const { t } = useLanguage();
   return (
     <div className="loading-shell" aria-live="polite" aria-busy="true">
-      Loading heritage experience…
+      {t.common.loading}
     </div>
   );
 }
@@ -62,24 +65,27 @@ export default function App() {
       <SmoothScroll>
         <div style={{ position: 'relative', width: '100%' }}>
           <a className="skip-link" href="#main-content">
-            Skip to main content
+            {t.accessibility.skipToMain}
           </a>
 
           {/* SEO Metadata */}
           <Helmet>
             <title>{t.siteTitle}</title>
             <meta name="description" content={t.metaDescription} />
-            <meta name="keywords" content="Bhagavati Devi, Family Trust, Ratnagiri, Konkan Temple, Ancestral Archive, Palm Leaf Manuscripts, Vedic Chanting, Digital Museum" />
-            <meta name="author" content="Shree Bhagavati Devi Family Trust" />
+            <meta name="keywords" content={t.metadata.keywords} />
+            <meta name="author" content={t.metadata.author} />
             <meta name="theme-color" content="#fbf8f3" />
             <meta property="og:title" content={t.siteTitle} />
             <meta property="og:description" content={t.metaDescription} />
             <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="Shree Bhagavati Devi Family Trust" />
+            <meta property="og:site_name" content={t.siteTitle} />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={t.siteTitle} />
             <meta name="twitter:description" content={t.metaDescription} />
             <meta name="robots" content="index, follow" />
+            <link rel="canonical" href="https://bhagavatidevitrust.org" />
+            <meta property="og:image" content={resolveAssetUrl(mockTrustData.heroDeityImage)} />
+            <meta name="twitter:image" content={resolveAssetUrl(mockTrustData.heroDeityImage)} />
             <html lang={locale} />
           </Helmet>
 

@@ -1,16 +1,20 @@
 import { motion } from 'framer-motion';
-import { Shield, Flower, Volume2, Flame } from 'lucide-react';
-import { mockTrustData } from '../constants/mockData';
+import { Shield, Flower, Volume2, Flame, type LucideIcon } from 'lucide-react';
+import templeImage from '../assets/images/templeimage.jfif';
+import { useLanguage } from '../hooks/useLanguage';
+import { resolveAssetUrl } from '../utils/image';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
-  Shield: Shield,
-  Flower: Flower,
-  Volume2: Volume2,
-  Flame: Flame,
+const iconMap: Record<string, LucideIcon> = {
+  Shield,
+  Flower,
+  Volume2,
+  Flame,
 };
 
 export default function BhagavatiDevi() {
-  const { deityDescription, deitySymbols, heroDeityImage } = mockTrustData;
+  const { t } = useLanguage();
+  const deityDescription = t.deity.description;
+  const deitySymbols = t.deity.symbols;
 
   return (
     <section id="devi" style={{ background: 'var(--bg-ancient)' }}>
@@ -22,8 +26,8 @@ export default function BhagavatiDevi() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="section-label">Divine Mother</span>
-          <h2 className="section-title">Bhagavati Devi</h2>
+          <span className="section-label">{t.deity.label}</span>
+          <h2 className="section-title">{t.deity.title}</h2>
           <p
             style={{
               fontSize: '1.05rem',
@@ -45,12 +49,12 @@ export default function BhagavatiDevi() {
               paddingBottom: '8px',
             }}
           >
-            Sacred Iconography
+            {t.deity.iconographyTitle}
           </h3>
 
           <div className="devi-symbol-grid">
             {deitySymbols.map((symbol, index) => {
-              const Icon = iconMap[symbol.iconName] || Shield;
+              const Icon = iconMap[(symbol.iconName as string) || ''] ?? Shield;
               return (
                 <div key={index} className="symbol-card">
                   <Icon size={24} strokeWidth={1.2} />
@@ -97,8 +101,8 @@ export default function BhagavatiDevi() {
               }}
             ></div>
             <img
-              src={heroDeityImage}
-              alt="Bhagavati Devi Sacred Iconography Artwork"
+              src={resolveAssetUrl(templeImage)}
+              alt={t.deity.imageAlt}
               style={{
                 width: '100%',
                 height: '100%',

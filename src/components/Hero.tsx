@@ -5,7 +5,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { resolveAssetUrl } from '../utils/image';
 
 export default function Hero() {
-  const { heroDeityImage, sanskritQuote, englishQuote } = mockTrustData;
+  const { heroDeityImage } = mockTrustData;
   const { t } = useLanguage();
 
   const handleExploreClick = () => {
@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="deity-glow"></div>
           <img
             src={resolveAssetUrl(heroDeityImage)}
-            alt="Bhagavati Devi Sacred Art Portrait"
+            alt={t.deity.imageAlt}
             className="deity-image"
             loading="eager"
             decoding="async"
@@ -66,8 +66,8 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, delay: 0.9 }}
         >
-          <div className="sanskrit-text">{sanskritQuote.devanagari}</div>
-          <div className="sanskrit-translation">“{sanskritQuote.translation}”</div>
+          <div className="sanskrit-text">{t.hero.sanskritDevanagari}</div>
+          <div className="sanskrit-translation">“{t.hero.sanskritTranslation}”</div>
         </motion.div>
 
         {/* English quote */}
@@ -84,7 +84,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.2 }}
         >
-          {englishQuote}
+          {t.hero.englishQuote}
         </motion.p>
 
         {/* Animated Diya and Scroll Indicator */}
@@ -94,7 +94,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          aria-label="Scroll to explore heritage"
+          aria-label={t.hero.exploreCta}
         >
           {/* Diya SVG */}
           <svg className="diya-svg" viewBox="0 0 100 80">

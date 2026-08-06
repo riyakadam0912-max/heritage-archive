@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { mockTrustData } from '../constants/mockData';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../hooks/useLanguage';
 import type { FamilyMember } from '../types/content';
 import BiographyDrawer from './BiographyDrawer';
 
@@ -34,16 +35,20 @@ const treeConnections = [
 ];
 
 export default function FamilyTree() {
-  const { familyMembers } = mockTrustData;
+  const { t } = useLanguage();
+  const familyMembers = mockTrustData.familyMembers.map((m) => {
+    const localized = t.family.members.find((lm) => lm.id === m.id);
+    return { ...m, ...(localized ?? {}) } as FamilyMember;
+  });
   const [selectedMember, setSelectedMember] = useState<FamilyMember | null>(null);
 
   return (
     <section id="family-tree" style={{ paddingTop: '50px' }}>
       <div className="legacy-intro">
-        <span className="section-label">Interactive Lineage</span>
-        <h2 className="section-title">The Vamshavriksha</h2>
+        <span className="section-label">{t.family.sectionLabel}</span>
+        <h2 className="section-title">{t.family.title}</h2>
         <p className="story-text" style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}>
-          Click on any family member node to view their archival records, historical contributions, and personal stories.
+          {t.family.scrollHint}
         </p>
       </div>
 
@@ -96,8 +101,15 @@ export default function FamilyTree() {
                 key={member.id}
                 className="tree-node"
                 onClick={() => setSelectedMember(member)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedMember(member);
+                  }
+                }}
                 role="button"
-                aria-label={`View lineage card for ${member.name}`}
+                tabIndex={0}
+                aria-label={t.accessibility.biographyFor.replace('{name}', member.name)}
               >
                 {/* Node outer outline */}
                 <circle cx={pos.x} cy={pos.y} r="20" />
@@ -106,7 +118,7 @@ export default function FamilyTree() {
                 <circle cx={pos.x} cy={pos.y} r="16" fill="none" stroke="var(--secondary-sandstone)" strokeWidth="0.8" />
                 
                 <text x={pos.x} y={pos.y + 4} fontSize="9" fontWeight="bold" fill="var(--text-muted)">
-                  G{member.generation}
+                  {t.biography.generationPrefix}{member.generation}
                 </text>
 
                 {/* Node name tag */}
@@ -131,7 +143,7 @@ export default function FamilyTree() {
       </div>
 
       <div className="tree-instruction">
-        *Scroll horizontally on mobile viewports to explore full lineages.
+        *{t.family.scrollHint}
       </div>
 
       {/* Drawer Overlay for biography details */}

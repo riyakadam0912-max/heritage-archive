@@ -1,33 +1,88 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { mockTrustData } from '../constants/mockData';
 import { resolveAssetUrl } from '../utils/image';
-
-const categories = ['All', 'Temple', 'Family', 'Festivals', 'Renovation', 'Documents'];
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function Gallery() {
-  const { galleryItems } = mockTrustData;
-  const [activeFilter, setActiveFilter] = useState('All');
+  const { t } = useLanguage();
+  // Prefer typed translations as canonical source of gallery item metadata
+  const galleryItems = t.gallery.items;
+  const galleryCategoryLabels: Record<string, string> = { all: t.common.all, ...(t.gallery.categoryLabels ?? {}) };
+  const categories = t.gallery.filters ?? ['all'];
+  const [activeFilter, setActiveFilter] = useState<string>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const lightboxRef = useRef<HTMLDivElement | null>(null);
 
-  // Filter gallery items
+  // Filter gallery items by canonical category value
   const filteredItems = galleryItems.filter((item) => {
-    if (activeFilter === 'All') return true;
+    if (activeFilter === 'all') return true;
     return item.category.toLowerCase() === activeFilter.toLowerCase();
   });
 
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handlePrev = useCallback((e?: { stopPropagation: () => void }) => {
+    e?.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex(lightboxIndex === 0 ? filteredItems.length - 1 : lightboxIndex - 1);
     }
-  };
+  }, [filteredItems.length, lightboxIndex]);
 
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleNext = useCallback((e?: { stopPropagation: () => void }) => {
+    e?.stopPropagation();
     if (lightboxIndex !== null) {
       setLightboxIndex(lightboxIndex === filteredItems.length - 1 ? 0 : lightboxIndex + 1);
+    }
+  }, [filteredItems.length, lightboxIndex]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0]?.clientX ?? null);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0]?.clientX ?? null);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+
+    const delta = touchStartX - touchEndX;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
+  useEffect(() => {
+    if (lightboxIndex !== null) {
+      lightboxRef.current?.focus();
+    }
+  }, [lightboxIndex]);
+
+  const handleLightboxKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setLightboxIndex(null);
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      handleNext();
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      handlePrev();
     }
   };
 
@@ -36,10 +91,10 @@ export default function Gallery() {
   return (
     <section id="gallery">
       <div className="legacy-intro" style={{ textAlign: 'center', margin: '0 auto 40px' }}>
-        <span className="section-label">Visual Chronology</span>
-        <h2 className="section-title">The Gallery Room</h2>
+        <span className="section-label">{t.gallery?.label}</span>
+        <h2 className="section-title">{t.gallery?.title}</h2>
         <p className="story-text" style={{ maxWidth: '600px', margin: '0 auto' }}>
-          Vintage photographs, architecture layout, renovation work, and festive moments preserved in the temple archives.
+          {t.gallery?.intro}
         </p>
       </div>
 
@@ -54,7 +109,7 @@ export default function Gallery() {
               setLightboxIndex(null);
             }}
           >
-            {cat}
+            {galleryCategoryLabels[cat] ?? cat}
           </button>
         ))}
       </div>
@@ -72,12 +127,19 @@ export default function Gallery() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.6 }}
               onClick={() => setLightboxIndex(idx)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setLightboxIndex(idx);
+                }
+              }}
+              tabIndex={0}
               role="button"
-              aria-label={`View larger image for ${item.title}`}
+              aria-label={`${t.gallery?.title}: ${item.title}`}
             >
               <img src={resolveAssetUrl(item.imageUrl)} alt={item.title} loading="lazy" decoding="async" />
               <div className="gallery-card-info">
-                <span className="gallery-card-meta">{item.category} • {item.year || 'Archive'}</span>
+                <span className="gallery-card-meta">{galleryCategoryLabels[item.category] ?? item.category} • {item.year || t.common.unrecorded}</span>
                 <h3 className="gallery-card-title">{item.title}</h3>
               </div>
             </motion.div>
@@ -89,6 +151,7 @@ export default function Gallery() {
       <AnimatePresence>
         {activeLightboxItem && (
           <motion.div
+            ref={lightboxRef}
             className="lightbox-modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -96,17 +159,23 @@ export default function Gallery() {
             onClick={() => setLightboxIndex(null)}
             role="dialog"
             aria-modal="true"
+            aria-label={`${t.gallery?.title} ${t.gallery?.lightbox?.close}`}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onKeyDown={handleLightboxKeyDown}
+            tabIndex={-1}
           >
             <button
               className="lightbox-close-btn"
               onClick={() => setLightboxIndex(null)}
-              aria-label="Close Lightbox"
+              aria-label={t.gallery?.lightbox?.close}
             >
               <X size={32} />
             </button>
 
             {/* Left Button */}
-            <button className="lightbox-nav-btn prev" onClick={handlePrev} aria-label="Previous image">
+            <button className="lightbox-nav-btn prev" onClick={handlePrev} aria-label={t.gallery?.lightbox?.previous}>
               <ChevronLeft size={24} />
             </button>
 
@@ -122,7 +191,7 @@ export default function Gallery() {
             </div>
 
             {/* Right Button */}
-            <button className="lightbox-nav-btn next" onClick={handleNext} aria-label="Next image">
+            <button className="lightbox-nav-btn next" onClick={handleNext} aria-label={t.gallery?.lightbox?.next}>
               <ChevronRight size={24} />
             </button>
 
@@ -141,7 +210,7 @@ export default function Gallery() {
                   display: 'block',
                 }}
               >
-                Category: {activeLightboxItem.category} | Year: {activeLightboxItem.year || 'Unrecorded'}
+                {t.common.category}: {galleryCategoryLabels[activeLightboxItem.category] ?? activeLightboxItem.category} | {t.common.year}: {activeLightboxItem.year || t.common.unrecorded}
               </span>
             </div>
           </motion.div>

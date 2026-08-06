@@ -3,19 +3,34 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, FileText, Download, X, Eye } from 'lucide-react';
 import { mockTrustData } from '../constants/mockData';
 import type { ArchiveDocument } from '../constants/mockData';
-
-const docCategories = ['All', 'Manuscripts', 'Letters', 'Certificates', 'Records'];
+import { useLanguage } from '../hooks/useLanguage';
+import { resolveAssetUrl } from '../utils/image';
 
 export default function Archive() {
-  const { archiveDocuments } = mockTrustData;
+  const { t } = useLanguage();
+  const archiveDocuments: ArchiveDocument[] = (mockTrustData.archiveDocuments || []).map((doc): ArchiveDocument => ({
+    ...doc,
+    title: doc.title ?? `${t.archive.title} ${doc.year}`,
+    description: doc.description ?? t.archive.intro,
+    transcription: doc.transcription ?? '',
+  }));
+  const archiveCategoryKeys = ['all', 'manuscripts', 'letters', 'certificates', 'records'] as const;
+  const archiveCategoryLabels = archiveCategoryKeys.map((key) => {
+    if (key === 'all') return t.common.all;
+    const localizedIndex = archiveCategoryKeys.indexOf(key) + 1;
+    return t.archive.filters[localizedIndex] ?? key;
+  });
+  const archiveCategoryLabelMap = Object.fromEntries(
+    archiveCategoryKeys.map((key, index) => [key, archiveCategoryLabels[index]])
+  ) as Record<string, string>;
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'manuscripts' | 'letters' | 'certificates' | 'records'>('all');
   const [selectedDoc, setSelectedDoc] = useState<ArchiveDocument | null>(null);
 
   // Filter and search logic
   const filteredDocs = archiveDocuments.filter((doc) => {
-    const matchesCategory =
-      activeCategory === 'All' || doc.category.toLowerCase() === activeCategory.toLowerCase();
+    const matchesCategory = activeCategory === 'all' || doc.category.toLowerCase() === activeCategory;
     const matchesSearch =
       doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       doc.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -26,11 +41,9 @@ export default function Archive() {
   return (
     <section id="archive">
       <div className="legacy-intro">
-        <span className="section-label">Heritage Museum</span>
-        <h2 className="section-title">The Digital Archive Room</h2>
-        <p className="story-text">
-          Browse centuries of family records, court papers, royal charters (Sanads), palm manuscripts, and old transcripts scanned and translated.
-        </p>
+        <span className="section-label">{t.archive.sectionLabel}</span>
+        <h2 className="section-title">{t.archive.title}</h2>
+        <p className="story-text">{t.archive.intro}</p>
       </div>
 
       {/* Controls: Search and Filter */}
@@ -43,23 +56,23 @@ export default function Archive() {
           <input
             type="text"
             className="archive-search-input"
-            placeholder="Search manuscripts, transcriptions, letters..."
+            placeholder={t.archive.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ paddingLeft: '45px', width: '100%' }}
-            aria-label="Search Archives"
+            aria-label={t.archive.searchPlaceholder}
           />
         </div>
 
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-          {docCategories.map((cat) => (
+          {archiveCategoryKeys.map((key, index) => (
             <button
-              key={cat}
-              className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => setActiveCategory(cat)}
+              key={key}
+              className={`filter-btn ${activeCategory === key ? 'active' : ''}`}
+              onClick={() => setActiveCategory(key)}
               style={{ padding: '6px 14px', fontSize: '0.75rem' }}
             >
-              {cat}
+              {archiveCategoryLabels[index]}
             </button>
           ))}
         </div>
@@ -72,17 +85,24 @@ export default function Archive() {
             key={doc.id}
             className="archive-card"
             onClick={() => setSelectedDoc(doc)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedDoc(doc);
+              }
+            }}
+            tabIndex={0}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             role="button"
             aria-haspopup="dialog"
-            aria-label={`Open document ${doc.title}`}
+            aria-label={`${t.archive.viewDoc} ${doc.title}`}
           >
             <div className="archive-card-meta">
-              <span>{doc.category}</span>
-              <span>{doc.year} AD</span>
+                <span>{archiveCategoryLabelMap[doc.category] ?? doc.category}</span>
+              <span>{doc.year} {t.timeline.yearSuffix ?? ''}</span>
             </div>
             <h3 className="archive-card-title">{doc.title}</h3>
             <p className="archive-card-desc">{doc.description.substring(0, 120)}...</p>
@@ -97,7 +117,7 @@ export default function Archive() {
               }}
             >
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                Author: {doc.author}
+                {t.archive.authorLabel} {doc.author}
               </span>
               <span
                 style={{
@@ -109,7 +129,7 @@ export default function Archive() {
                   fontWeight: 500,
                 }}
               >
-                <Eye size={14} /> View Document
+                <Eye size={14} /> {t.archive.viewDoc}
               </span>
             </div>
           </motion.div>
@@ -118,7 +138,7 @@ export default function Archive() {
         {filteredDocs.length === 0 && (
           <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>
             <p style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}>
-              No manuscripts or documents matched your search query.
+              {t.archive.noResults}
             </p>
           </div>
         )}
@@ -132,7 +152,7 @@ export default function Archive() {
             onClick={() => setSelectedDoc(null)}
             role="dialog"
             aria-modal="true"
-            aria-label={`Document viewer for ${selectedDoc.title}`}
+            aria-label={t.accessibility.documentViewerFor.replace('{title}', selectedDoc.title)}
           >
             <motion.div
               className="doc-modal-container"
@@ -147,7 +167,7 @@ export default function Archive() {
                 className="drawer-close-btn"
                 onClick={() => setSelectedDoc(null)}
                 style={{ color: 'var(--primary-maroon)', zIndex: 10 }}
-                aria-label="Close document viewer"
+                aria-label={t.common.close}
               >
                 <X size={28} />
               </button>
@@ -157,11 +177,11 @@ export default function Archive() {
                 {selectedDoc.fileType === 'pdf' ? (
                   <div className="doc-pdf-placeholder">
                     <FileText size={48} strokeWidth={1} style={{ color: 'var(--accent-gold)' }} />
-                    <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>PDF File Document</span>
+                    <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>{t.archive.pdfLabel}</span>
                     <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>{selectedDoc.fileSize}</span>
                   </div>
                 ) : (
-                  <img src={selectedDoc.previewUrl} alt={selectedDoc.title} />
+                  <img src={resolveAssetUrl(selectedDoc.previewUrl)} alt={selectedDoc.title} />
                 )}
               </div>
 
@@ -169,15 +189,15 @@ export default function Archive() {
               <div className="doc-modal-details">
                 <div>
                   <span className="section-label" style={{ fontSize: '0.7rem' }}>
-                    {selectedDoc.category} AD {selectedDoc.year}
+                    {selectedDoc.category} {t.timeline.yearSuffix ?? ''} {selectedDoc.year}
                   </span>
                   <h2 style={{ fontSize: '1.65rem', marginBottom: '8px', lineHeight: 1.2 }}>
                     {selectedDoc.title}
                   </h2>
                   <div className="doc-detail-meta">
-                    <span>Steward/Author: {selectedDoc.author}</span>
+                    <span>{t.archive.authorLabel} {selectedDoc.author}</span>
                     <span style={{ margin: '0 10px' }}>|</span>
-                    <span>Format: {selectedDoc.fileType.toUpperCase()} ({selectedDoc.fileSize})</span>
+                    <span>{t.archive.pdfLabel ? `Format: ${selectedDoc.fileType.toUpperCase()} (${selectedDoc.fileSize})` : ''}</span>
                   </div>
                 </div>
 
@@ -185,17 +205,16 @@ export default function Archive() {
 
                 {selectedDoc.transcription && (
                   <div className="doc-transcription">
-                    <h4 className="doc-transcription-title">English Translation Excerpt</h4>
+                    <h4 className="doc-transcription-title">{t.archive.pdfLabel}</h4>
                     <p className="doc-transcription-text">{selectedDoc.transcription}</p>
                   </div>
                 )}
 
                 <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert('Simulating file download. The original high-resolution TIFF archive is packaged for download.');
+                  <button
+                    type="button"
+                    onClick={() => {
+                      alert(t.archive.downloadAlert);
                     }}
                     style={{
                       display: 'inline-flex',
@@ -207,11 +226,12 @@ export default function Archive() {
                       borderRadius: '24px',
                       fontSize: '0.85rem',
                       fontWeight: 'bold',
-                      textDecoration: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
                     }}
                   >
-                    <Download size={14} /> Download Archive Scan
-                  </a>
+                    <Download size={14} /> {t.archive.downloadScan}
+                  </button>
                 </div>
               </div>
             </motion.div>

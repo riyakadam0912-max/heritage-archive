@@ -33,4 +33,40 @@
     "location": "Temple Location & Visiting Hours",
     "contact": "Contact The Office"
   }
+
+  ,"common":{
+    "langEnglish":"English",
+    "langMarathi":"मराठी",
+    "all":"All",
+    "category":"Category",
+    "year":"Year",
+    "unrecorded":"Unrecorded",
+    "availableHours":"Available Mon – Sat: 09:00 AM – 05:00 PM",
+    "emailResponseTime":"We respond to heritage queries within 48 hours",
+    "officeLabel":"Ancestral Office",
+    "stewardship":"Stewardship"
+  },
+  "gallery":{
+    "label":"Visual Chronology",
+    "title":"The Gallery Room",
+    "intro":"Vintage photographs, architectural layouts, renovation work, and festive moments preserved in the temple archives.",
+    "filters":["All","Temple","Family","Festivals","Renovation","Documents"],
+    "lightbox":{
+      "close":"Close Lightbox",
+      "previous":"Previous image",
+      "next":"Next image"
+    }
+  },
+  "contact":{
+    "title":"Contact The Office",
+    "subtitle":"For inquiries regarding document research, scholarship application submissions, or lineage updates.",
+    "phoneLabel":"Phone Contact",
+    "emailLabel":"Electronic Mail",
+    "officeLabel":"Ancestral Office"
+  },
+  "footer":{
+    "trustName":"Shree Bhagavati Devi Devasthan Charitable Trust",
+    "registration":"Registered under the Bombay Public Trusts Act, 1950 | Registration No. E-281 (Ratnagiri)",
+    "copyright":"© {year} Shree Bhagavati Devi Family Trust. All ancestral rights, manuscripts, and scans are legally protected."
+  }
 }

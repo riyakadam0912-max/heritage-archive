@@ -30,6 +30,16 @@ export interface FamilyMember {
   stories?: string[];
 }
 
+// Language-independent technical shape for data coming from mockData.ts
+export interface TechnicalFamilyMember {
+  id: string;
+  generation: number;
+  lifespan: string;
+  photoUrl: string;
+  parents?: string[];
+  children?: string[];
+}
+
 export interface TimelineEvent {
   year: number;
   title: string;
@@ -41,14 +51,29 @@ export interface TimelineEvent {
   audioTranscript?: string;
 }
 
+export interface TechnicalTimelineEvent {
+  year: number;
+  category: 'temple' | 'trust' | 'family';
+  documentUrl?: string;
+  audioUrl?: string;
+}
+
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'temple' | 'family' | 'festivals' | 'renovation' | 'documents';
+  category: 'devi' | 'temple' | 'festivals';
   imageUrl: string;
   blurPlaceholder?: string;
   year?: string;
   description?: string;
+}
+
+export interface TechnicalGalleryItem {
+  id: string;
+  category: 'devi' | 'temple' | 'festivals';
+  imageUrl: string;
+  blurPlaceholder?: string;
+  year?: string;
 }
 
 export interface ArchiveDocument {
@@ -64,6 +89,19 @@ export interface ArchiveDocument {
   transcription?: string;
 }
 
+export interface TechnicalArchiveDocument {
+  id: string;
+  category: 'letters' | 'certificates' | 'records' | 'manuscripts';
+  year: string;
+  author: string;
+  previewUrl: string;
+  fileType: 'pdf' | 'image';
+  fileSize: string;
+  title?: string;
+  description?: string;
+  transcription?: string;
+}
+
 export interface OralHistory {
   id: string;
   speaker: string;
@@ -75,10 +113,25 @@ export interface OralHistory {
   transcriptMarathi: string;
 }
 
+export interface TechnicalOralHistory {
+  id: string;
+  speaker: string;
+  relationship: string;
+  audioDuration: string;
+  audioUrl: string;
+}
+
 export interface VideoItem {
   id: string;
   title: string;
   description: string;
+  duration: string;
+  videoUrl: string;
+  thumbnailUrl: string;
+}
+
+export interface TechnicalVideoItem {
+  id: string;
   duration: string;
   videoUrl: string;
   thumbnailUrl: string;
@@ -122,10 +175,49 @@ export interface TrustData {
     parking: string;
     visitingHours: string;
     mapEmbedUrl: string;
+    imageUrl?: string;
   };
   contactDetails: {
     phone: string;
     email: string;
     officeAddress: string;
+  };
+}
+
+// Language-independent technical container used by mock data
+export interface TechnicalTrustData {
+  logoUrl: string;
+  heroDeityImage: string;
+  sanskritQuote: {
+    devanagari: string;
+    transliteration: string;
+    translation?: string;
+  };
+  familyMembers: TechnicalFamilyMember[];
+  timelineEvents: TechnicalTimelineEvent[];
+  galleryItems: TechnicalGalleryItem[];
+  archiveDocuments: TechnicalArchiveDocument[];
+  oralHistories: TechnicalOralHistory[];
+  videoArchive: TechnicalVideoItem[];
+  donationDetails: {
+    upiId?: string;
+    upiQrUrl?: string;
+    bankName?: string;
+    accountName?: string;
+    accountNumber?: string;
+    ifscCode?: string;
+    branch?: string;
+  };
+  locationDetails: {
+    address?: string;
+    landmarks?: string[];
+    parking?: string;
+    visitingHours?: string;
+    mapEmbedUrl?: string;
+    imageUrl?: string;
+  };
+  contactDetails?: {
+    phone?: string;
+    email?: string;
   };
 }

@@ -1,6 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
 import { Compass, BookOpen, ShieldAlert, Heart, type LucideIcon } from 'lucide-react';
-import { mockTrustData } from '../constants/mockData';
 import { useLanguage } from '../hooks/useLanguage';
 
 // Map icon names from mockData to Lucide components
@@ -12,8 +11,9 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function AboutTrust() {
-  const { aboutStory, trustValues } = mockTrustData;
   const { t } = useLanguage();
+  const aboutStory = t.about.story;
+  const trustValues = t.trust.values;
 
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -35,10 +35,10 @@ export default function AboutTrust() {
           }}
         >
           <motion.span className="section-label" variants={cardVariants}>
-            {t.sections?.about ?? 'About The Family Trust'}
+            {t.about.sectionLabel}
           </motion.span>
           <motion.h2 className="section-title" variants={cardVariants}>
-            {t.sections?.about ?? 'About The Family Trust'}
+            {t.about.title}
           </motion.h2>
           {aboutStory.map((paragraph, index) => (
             <motion.p key={index} className="story-text" variants={cardVariants}>
@@ -56,7 +56,7 @@ export default function AboutTrust() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="section-label" style={{ color: 'var(--primary-maroon)' }}>
-            {t.sections?.about ?? 'Core Virtues'}
+            {t.sections?.about}
           </span>
           <h3
             style={{
@@ -66,7 +66,7 @@ export default function AboutTrust() {
               marginBottom: '10px',
             }}
           >
-            {t.sections?.about ?? 'Trust Stewardship'}
+            {t.sections?.trust}
           </h3>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>

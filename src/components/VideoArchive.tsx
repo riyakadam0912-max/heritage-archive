@@ -1,17 +1,17 @@
 import { Play } from 'lucide-react';
-import { mockTrustData } from '../constants/mockData';
+
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function VideoArchive() {
-  const { videoArchive } = mockTrustData;
+  const { t } = useLanguage();
+  const videoArchive = t.videoArchive.items;
 
   return (
     <section id="video-archive">
       <div className="legacy-intro">
-        <span className="section-label">Archived Reels</span>
-        <h2 className="section-title">Visual Records & Ritual footage</h2>
-        <p className="story-text">
-          Vivid documentary videos showcasing historical rituals, stone carvings, restoration journals, and holy festivals.
-        </p>
+        <span className="section-label">{t.videoArchive.sectionLabel}</span>
+        <h2 className="section-title">{t.videoArchive.title}</h2>
+        <p className="story-text">{t.videoArchive.intro}</p>
       </div>
 
       <div className="video-grid">
@@ -24,9 +24,9 @@ export default function VideoArchive() {
                 controls
                 preload="metadata"
                 playsInline
-                aria-label={`Video player for ${video.title}`}
+                aria-label={t.videoArchive.title + ' — ' + video.title}
               >
-                Your browser does not support the video tag.
+                {t.videoArchive.fallback}
               </video>
             </div>
             
@@ -43,7 +43,7 @@ export default function VideoArchive() {
                   marginBottom: '10px',
                 }}
               >
-                <Play size={12} fill="var(--accent-gold)" /> Video Clip ({video.duration} mins)
+                <Play size={12} fill="var(--accent-gold)" /> {t.videoArchive.videoClipLabel.replace('{duration}', video.duration)}
               </span>
               <h3 className="video-title">{video.title}</h3>
               <p className="video-description">{video.description}</p>
