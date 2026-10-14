@@ -20,7 +20,7 @@ const en: Translation = {
     close: 'Close'
   },
   navigation: {
-    title: 'भगवती देवस्थान',
+    title: 'श्री भगवती प्रतिष्ठान',
     items: {
       about: 'About',
       devi: 'Bhagavati Devi',
@@ -36,84 +36,66 @@ const en: Translation = {
     }
   },
   hero: {
-    title: 'श्री भगवती देवी कौटुंबिक विश्वस्त संस्था',
-    subtitle: 'Heritage Sanctuary & Ancestral Digital Archive',
+    title: 'Shri Bhagavati Pratishthan',
+    subtitle: 'Navghar, Malgund, Ratnagiri',
     explore: 'Explore Heritage',
     sanskritDevanagari: 'सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके । शरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते ॥',
     sanskritTranslation: 'Auspiciousness of all auspiciousness, the consort of Shiva, the fulfiller of all objectives, the protector, the three-eyed Gauri, Narayani, we bow to Thee.',
-    englishQuote: 'Preserving the sacred flame of spiritual heritage and the ancient customs of our ancestors for seven hundred years.',
+    englishQuote: 'Official information and the Marathi booklet published by Shri Bhagavati Pratishthan.',
     exploreCta: 'Scroll to explore heritage'
   },
   // compatibility fields used in several components
-  siteTitle: 'Shree Bhagavati Devi Family Trust',
-  metaDescription: 'A living heritage project preserving the temple, rituals, and archival documents of the Shree Bhagavati Devi Family Trust.',
+  siteTitle: 'Shri Bhagavati Pratishthan',
+  metaDescription: 'Official information and the Marathi booklet of Shri Bhagavati Pratishthan, Navghar, Malgund, Ratnagiri.',
   nav: {
-    about: 'About',
-    devi: 'Devi',
+    story: 'Story',
     temple: 'Temple',
-    legacy: 'Legacy',
-    timeline: 'Timeline',
-    gallery: 'Gallery',
-    festivals: 'Festivals',
     archive: 'Archive',
+    visit: 'Visit',
     donation: 'Donate',
-    location: 'Location',
-    contact: 'Contact'
   },
   sections: {
-    about: 'About The Family Trust',
-    trust: 'Trust Stewardship',
-    values: 'Core Virtues'
+    about: 'About the Pratishthan',
+    trust: 'Recorded in the booklet',
+    values: 'Published information'
   },
   about: {
-    sectionLabel: 'About The Family Trust',
-    title: 'About The Family Trust',
+    sectionLabel: 'About the Pratishthan',
+    title: 'Shri Bhagavati Pratishthan',
     story: [
-      'Nestled in the lush Konkan coastland, where the Sahyadri mountains meet the Arabian Sea, our family trust has stood as the guardian of the sacred shrine of Devi Bhagavati for over three centuries.',
-      'Founded by our ancestors in the late 17th century, the trust was established not to rule, but to serve—to maintain the daily prayers, protect the holy groves (Devrai), and preserve the palm-leaf manuscripts detailing the traditional rites and lineage history.',
-      'Generation after generation, the family has meticulously transcribed historical documents, funded community infrastructure, and kept the lamp of Bhagavati Devi burning through periods of changing empires, colonial struggles, and modern transformations.'
+      'The supplied Marathi booklet identifies the organization as Shri Bhagavati Pratishthan, located at Navghar, Malgund, Ratnagiri.',
+      'The booklet records the current committee, notices, and annual contributions. It does not provide a verified multi-generation family history or historical chronology.'
     ]
   },
   trust: {
     values: [
-      { title: 'Devotion (Bhakti)', description: 'Serving the Divine Mother Bhagavati as the ultimate source of energy, wisdom, and cosmic balance in our lives.' },
-      { title: 'Preservation (Sanrakshan)', description: 'Protecting our ancestral documents, historical artifacts, and Konkan spiritual traditions from fading into oblivion.' },
-      { title: 'Duty (Dharma)', description: 'Fulfilling our obligations to the community through silent charity, ecological restoration of temple land, and moral stewardship.' },
-      { title: 'Continuity (Parampara)', description: 'Passing on the sacred rituals, classical Sanskrit scholarship, and oral histories to the younger generations.' }
+      { title: 'Committee', description: 'The booklet includes a committee roster.' },
+      { title: 'Notices', description: 'The booklet includes notices from the Pratishthan.' },
+      { title: 'Annual contributions', description: 'The booklet includes annual contribution lists.' }
     ]
   },
   deity: {
     label: 'Divine Mother',
     title: 'Bhagavati Devi',
-    description: 'Bhagavati Devi, the Supreme Mother Goddess, is worshipped as the source of Aadishakti—the cosmic power that maintains order and sustains all life. In the Konkan region, She is revered in Her peaceful yet powerful form, sitting majestically on a golden throne under the shade of ancient trees. She represents the combined energies of Durga (courage), Lakshmi (grace), and Saraswati (wisdom).',
+    description: 'The booklet cover features an image of Shri Bhagavati. The image is presented here as a devotional representation; detailed historical claims about the idol are not established by the supplied booklet.',
     iconographyTitle: 'Sacred Iconography',
     imageAlt: 'Bhagavati Devi Sacred Iconography Artwork',
-    symbols: [
-      { name: 'The Trishula (Trident)', meaning: 'Symbolizes the balance of the three gunas (Sattva, Rajas, Tamas) and mastery over the physical, mental, and spiritual planes.' },
-      { name: 'The Golden Lotus', meaning: 'Represents pure detachment, spiritual awakening, and beauty blooming amidst the challenges of the worldly ocean.' },
-      { name: 'The Conch (Shankha)', meaning: 'The primordial sound of creation, invoking purity and chasing away negative energies from the sanctuary.' },
-      { name: 'The Oil Lamp (Diya)', meaning: 'Representing the removal of darkness (ignorance) through the light of divine wisdom and selflessness.' }
-    ]
+    symbols: []
   },
   temple: {
-    sectionLabel: 'Temple Architecture',
-    title: 'The Sacred Sanctuary',
-    architecture: 'Our ancestral temple is a classic example of Konkan wooden and stone craftsmanship. The sanctum sanctorum (Garbhagriha) is built of local red laterite stone (Chira) which absorbs the monsoon moisture, keeping the inner chamber cool and fragrant with incense. The exterior roof features high-sloped terracotta tiles designed to withstand the heavy coastal downpours, while the central hall (Sabhamandapa) is adorned with hand-carved teakwood pillars depicting the ten incarnations of Vishnu.',
-    dailyTitle: 'Daily Nitya Vidhi',
-    rituals: [
-      { time: '05:30 AM', name: 'Kakad Aarti', description: 'The morning awakening ritual of Devi Bhagavati, accompanied by soft singing of traditional hymns and lighting of camphor.' },
-      { time: '08:00 AM', name: 'Abhishek & Shringar', description: 'Holy bathing of the deity with sacred waters, milk, and honey, followed by decoration with fresh marigolds and jasmine.' },
-      { time: '12:00 PM', name: 'Maha Naivedya', description: 'Offering of traditional coastal vegetarian cuisine (sweet modaks, coconut rice) to the deity, followed by lunch distribution.' },
-      { time: '07:00 PM', name: 'Maha Aarti & Deepotsav', description: 'The spectacular evening light ceremony. Hundreds of clay lamps are lit around the temple courtyard to the sound of bells.' }
-    ],
-    imageAlt: 'Temple Red Laterite Architecture',
-    bellNote: '*Click the bell icon to ring. Sacred incense smoke rises from the courtyard below.',
+    sectionLabel: 'Shri Bhagavati',
+    title: 'Devotional Image',
+    architecture: 'The supplied booklet identifies Shri Bhagavati Pratishthan and includes a devotional image of Shri Bhagavati. Architectural details and daily ritual timings are not specified here.',
+    dailyTitle: 'Ritual schedule',
+    rituals: [],
+    imageAlt: 'Image supplied with the site',
+    bellNote: '',
     ringBellAria: 'Ring Temple Bell'
   },
   gallery: {
-    label: 'Visual Chronology',
-    title: 'The Gallery Room',
-    intro: 'Vintage photographs, architecture layout, renovation work, and festive moments preserved in the temple archives.',
+    label: 'Images',
+    title: 'Image Gallery',
+    intro: 'Images are presented without historical dates or location claims unless verified.',
     filters: ['all', 'devi', 'temple', 'festivals'],
     categoryLabels: {
       all: 'All',
@@ -122,11 +104,11 @@ const en: Translation = {
       festivals: 'Festivals'
     },
     items: [
-      { id: 'g1', title: 'Sacred Temple Image', category: 'devi', imageUrl: templeImage, year: 'Present', description: 'A devotional view of the temple sanctum and sacred precincts.' },
-      { id: 'g2', title: 'Bhagavati Devi Portrait', category: 'devi', imageUrl: bhagavatiDeviImage, year: 'Present', description: 'Authentic devotional image of Shri Bhagavati Devi.' },
-      { id: 'g3', title: 'Arabian Sea View', category: 'temple', imageUrl: bestViewImage, year: 'Present', description: 'Panoramic view of the Arabian Sea from the Ratnadurg Fort temple precincts.' },
-      { id: 'g4', title: 'Ratnagiri Coastline', category: 'temple', imageUrl: cityViewImage, year: 'Present', description: 'View of Ratnagiri town and the Konkan coastline from the temple hill.' },
-      { id: 'g5', title: 'Sacred Temple Vista', category: 'temple', imageUrl: backsideViewImage, year: 'Present', description: 'View from the Bhagavati Temple precinct overlooking the fort and surrounding landscape.' }
+      { id: 'g1', title: 'Image 1', category: 'devi', imageUrl: templeImage, description: 'Image supplied with the site.' },
+      { id: 'g2', title: 'Image 2', category: 'devi', imageUrl: bhagavatiDeviImage, description: 'Image supplied with the site.' },
+      { id: 'g3', title: 'Image 3', category: 'temple', imageUrl: bestViewImage, description: 'Image supplied with the site.' },
+      { id: 'g4', title: 'Image 4', category: 'temple', imageUrl: cityViewImage, description: 'Image supplied with the site.' },
+      { id: 'g5', title: 'Image 5', category: 'temple', imageUrl: backsideViewImage, description: 'Image supplied with the site.' }
     ],
     lightbox: { close: 'Close Lightbox', previous: 'Previous image', next: 'Next image' }
   },
@@ -191,9 +173,11 @@ const en: Translation = {
     heritageLabel: 'Family Heritage Story'
   },
   archive: {
-    sectionLabel: 'Heritage Museum',
-    title: 'The Digital Archive Room',
-    intro: 'Browse centuries of family records, court papers, royal charters (Sanads), palm manuscripts, and old transcripts scanned and translated.',
+    sectionLabel: 'Official Publication',
+    title: 'Shri Bhagavati Pratishthan Booklet',
+    intro: 'The available Marathi booklet contains committee information, notices, and annual contribution lists.',
+    sourceBookletTitle: 'Shri Bhagavati Pratishthan (Marathi)',
+    sourceBookletDescription: 'The supplied booklet was used to verify the organization name and locality. Individual contact details and contribution amounts are not reproduced here.',
     searchPlaceholder: 'Search manuscripts, transcriptions, letters...',
     filters: ['All', 'Manuscripts', 'Letters', 'Certificates', 'Records'],
     noResults: 'No manuscripts or documents matched your search query.',
@@ -225,20 +209,20 @@ const en: Translation = {
       { id: 'v1', title: 'The Kartik Deepotsav Celebration (Full Video)', description: 'A beautiful visual documentary showcasing the lighting of 1008 clay lamps around the temple and the evening processional chants.', duration: '5:24', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-candles-burning-in-a-dark-room-41662-large.mp4', thumbnailUrl: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=500' },
       { id: 'v2', title: 'Restoring the Laterite Stone Sanctum', description: 'A quiet time-lapse and explanation of the lime-plastering technique used by master stonemasons during the 2018 renovation.', duration: '8:12', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-hands-carving-a-stone-block-43033-large.mp4', thumbnailUrl: 'https://images.unsplash.com/photo-1590069261209-f8e9b8642343?q=80&w=500' }
     ],
-    fallback: 'Your browser does not support the video tag.',
+    fallback: 'Video preview is currently unavailable.',
     videoClipLabel: 'Video Clip ({duration})'
   },
   donation: {
-    sectionLabel: 'Trust Support',
-    title: 'Support the Endowment',
-    intro: 'As a centuries-old public trust, our offerings are managed by the family council solely for the daily temple upkeep, clinic services, and regional education funds. We maintain complete audit transparency.',
-    upiTitle: 'UPI Scan to Offer',
-    qrAlt: 'Endowment Donation UPI QR Code',
-    scanInstructions: 'Scan via any BHIM, UPI, GPAY or PhonePe application',
+    sectionLabel: 'Donations',
+    title: 'Donation Information',
+    intro: 'The supplied booklet lists annual contributions but does not provide verified electronic payment or bank-transfer instructions.',
+    upiTitle: 'Payment details unavailable',
+    qrAlt: 'No verified donation QR code is available',
+    scanInstructions: 'Please confirm current payment instructions directly with Shri Bhagavati Pratishthan before sending funds.',
     bankLabels: { bankName: 'Bank Name', accountName: 'Account Name', accountNumber: 'Account Number', ifsc: 'IFSC Code', branch: 'Branch Office' },
-    directRemittanceTitle: 'Direct Bank Remittance',
-    transparencyTitle: 'Transparency Pledge',
-    transparencyStatement: 'All funds are managed in full public trust transparency and used only for temple maintenance, community health, and education.'
+    directRemittanceTitle: 'Bank transfer details unavailable',
+    transparencyTitle: 'Please verify before donating',
+    transparencyStatement: 'No bank account, UPI ID, or QR code is published here because the supplied booklet does not verify those details.'
   },
   contact: {
     sectionLabel: 'Stewardship',
@@ -251,13 +235,13 @@ const en: Translation = {
     emailResponseTime: 'We respond to heritage queries within 48 hours'
   },
   location: {
-    sectionLabel: 'Pilgrimage',
-    title: 'Temple Location & Visiting Hours',
-    intro: 'Guidelines and maps to assist descendants and pilgrims visiting the Shree Bhagavati shrine in Ratnagiri.',
-    address: 'Shree Bhagavati Temple Valley, Devasthan Road, Dabhol Taluka, Ratnagiri District, Maharashtra - 415706',
-    landmarks: ['6 km east of Dabhol Ferry Creek jetty', 'Behind the ancient Devrai (Sacred Forest Grove)'],
-    parking: 'Free parking is available at the temple entrance gates. Vehicles are not permitted beyond the outer stone archway (Ves) to preserve the silence and air quality of the sacred valley.',
-    visitingHours: 'Daily: 05:00 AM – 12:30 PM, and 04:30 PM – 09:00 PM. (Afternoon closure is strictly maintained for deity resting hours).',
+    sectionLabel: 'Location',
+    title: 'Pratishthan Address',
+    intro: 'The supplied booklet lists the Pratishthan at the following location.',
+    address: 'Navghar, Malgund, Ratnagiri, Maharashtra',
+    landmarks: [],
+    parking: '',
+    visitingHours: '',
     addressLabel: 'Address',
     visitingHoursLabel: 'Visiting Hours',
     landmarksLabel: 'Landmarks',
@@ -265,14 +249,14 @@ const en: Translation = {
   },
   footer: {
     sacredQuoteDevanagari: '“परित्राणाय साधूनां विनाशाय च दुष्कृताम् । धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ॥”',
-    trustName: 'Shree Bhagavati Devi Devasthan Charitable Trust',
-    registration: 'Registered under the Bombay Public Trusts Act, 1950 | Registration No. E-281 (Ratnagiri)',
-    copyright: '© {year} Shree Bhagavati Devi Family Trust. All ancestral rights, manuscripts, and scans are legally protected.'
+    trustName: 'Shri Bhagavati Pratishthan',
+    registration: '',
+    copyright: '© {year} Shri Bhagavati Pratishthan. All rights reserved.'
   },
   forms: {},
   accessibility: {
     skipToMain: 'Skip to main content',
-    logoAlt: 'Bhagavati Devi Trust Logo',
+    logoAlt: 'Shri Bhagavati Pratishthan',
     toggleMenu: 'Toggle Navigation Menu',
     biographyFor: 'Biography details for {name}',
     documentViewerFor: 'Document viewer for {title}',
@@ -280,7 +264,7 @@ const en: Translation = {
   },
   metadata: {
     keywords: 'Bhagavati Devi, Family Trust, Ratnagiri, Konkan Temple, Ancestral Archive, Palm Leaf Manuscripts, Vedic Chanting, Digital Museum',
-    author: 'Shree Bhagavati Devi Family Trust'
+    author: 'Shri Bhagavati Pratishthan'
   }
 };
 

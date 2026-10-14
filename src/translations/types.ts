@@ -117,6 +117,8 @@ export interface Translation {
     sectionLabel: string;
     title: string;
     intro: string;
+    sourceBookletTitle: string;
+    sourceBookletDescription: string;
     searchPlaceholder: string;
     filters: string[];
     noResults: string;

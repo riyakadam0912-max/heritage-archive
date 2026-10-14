@@ -147,7 +147,7 @@ export default function Temple() {
               decoding="async"
             />
           </div>
-          <div
+          {t.temple.bellNote && <div
             style={{
               fontSize: '0.85rem',
               color: 'var(--text-muted)',
@@ -157,7 +157,7 @@ export default function Temple() {
             }}
           >
             {t.temple.bellNote}
-          </div>
+          </div>}
         </motion.div>
 
         {/* Right Column: Details & Schedule */}
@@ -174,7 +174,7 @@ export default function Temple() {
             <p style={{ lineHeight: 1.8, textAlign: 'justify' }}>{templeArchitecture}</p>
           </div>
 
-          <div>
+          {templeRituals.length > 0 && <div>
             <h3
               style={{
                 fontFamily: 'var(--font-serif-heading)',
@@ -203,7 +203,7 @@ export default function Temple() {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
         </motion.div>
       </div>
     </section>

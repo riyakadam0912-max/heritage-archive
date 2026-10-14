@@ -20,7 +20,7 @@ const mr: Translation = {
     close: 'बंद करा'
   },
   navigation: {
-    title: 'श्री भगवती देवी कुटुंब विश्वस्त',
+    title: 'श्री भगवती प्रतिष्ठान',
     items: {
       about: 'आमच्या विषयी',
       devi: 'भगवती देवी',
@@ -36,63 +36,51 @@ const mr: Translation = {
     }
   },
   hero: {
-    title: 'श्री भगवती देवी कौटुंबिक विश्वस्त संस्था',
-    subtitle: 'वारसा आश्रम आणि पूर्वजांचा डिजिटल पुराभिलेख',
+    title: 'श्री भगवती प्रतिष्ठान',
+    subtitle: 'नवघर, मालगुंड, रत्नागिरी',
     explore: 'वारसा एक्स्प्लोर करा',
     sanskritDevanagari: 'सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके । शरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते ॥',
     sanskritTranslation: 'सर्व मंगलांकरिणी, शिवाच्या पती, सर्व उद्दिष्ट पूर्तित करणारी, त्र्यंबके गौरी, नारायणी — आम्ही तुझे नमन करतो.',
-    englishQuote: 'पुढच्या सातशे वर्षांसाठी आमच्या पूर्वजांच्या पवित्र परंपरा आणि वारसा जतन करणे.',
+    englishQuote: 'श्री भगवती प्रतिष्ठानची अधिकृत माहिती आणि मराठी पुस्तिका.',
     exploreCta: 'वारसा एक्स्प्लोर करा'
   },
   about: {
-    sectionLabel: 'कुटुंब विश्वस्ताविषयी',
-    title: 'कुटुंब विश्वस्ताविषयी',
+    sectionLabel: 'प्रतिष्ठानाविषयी',
+    title: 'श्री भगवती प्रतिष्ठान',
     story: [
-      'कोकणातील निसर्गरम्य किनाऱ्यावर, सह्याद्री पर्वत आणि अरबी समुद्र जेथून भेटतो, आमचा कुटुंब विश्वस्त भगवती देवीच्या पवित्र मंदिराचा रक्षक म्हणून शतकांहून अधिक काळ उपस्थित आहे.',
-      'आमच्या पूर्वजांनी 17व्या शतकात स्थापन केलेले हे विश्वस्त शासन करण्यासाठी नव्हे तर सेवा करण्यासाठी होते — दररोजच्या पूजा, देवराईचे संरक्षण आणि शास्त्रातील पानपत्रे राखणे.',
-      'पिढ्यानपिढ्या, कुटुंबाने ऐतिहासिक दस्तऐवजांचे छाननी आणि प्रतलेखन केले, समुदायाच्या पायाभूत सुविधा वित्तपोषित केल्या आणि बदलत्या राजवटी, वसाहती संघर्ष आणि आधुनिक रूपांतरणांच्या काळात भगवती देवीची दीपक जपली.'
+      'उपलब्ध मराठी पुस्तिकेनुसार संस्थेचे नाव श्री भगवती प्रतिष्ठान असून पत्ता नवघर, मालगुंड, रत्नागिरी असा आहे.',
+      'या पुस्तिकेत कार्यकारी मंडळ, सूचना आणि वार्षिक वर्गणीची यादी आहे. अनेक पिढ्यांचा कौटुंबिक इतिहास किंवा ऐतिहासिक कालरेषा या पुस्तिकेतून प्रमाणित होत नाही.'
     ]
   },
   trust: {
     values: [
-      { title: 'भक्ति (Devotion)', description: 'भगवती देवीला आस्थेने सेवेत घातलेले — जीवनातील ऊर्जा, ज्ञान आणि संतुलनाचा स्रोत.' },
-      { title: 'संरक्षण (Preservation)', description: 'पूर्वजांचे दस्तऐवज, ऐतिहासिक कलाकृती आणि कोकण परंपरा हरपत नाही याची काळजी.' },
-      { title: 'धर्म (Duty)', description: 'समुदायासाठी निःशब्द दान, पारिस्थितिक पुनरुज्जीवन आणि नैतिक जबाबदारी.' },
-      { title: 'परंपरा (Continuity)', description: 'पवित्र अनुष्ठान, संस्कृत परंपरा आणि मौखिक इतिहास पुढील पिढ्यांना हस्तांतरित करणे.' }
+      { title: 'कार्यकारी मंडळ', description: 'पुस्तिकेत कार्यकारी मंडळाची यादी आहे.' },
+      { title: 'सूचना', description: 'पुस्तिकेत प्रतिष्ठानच्या सूचना आहेत.' },
+      { title: 'वार्षिक वर्गणी', description: 'पुस्तिकेत वार्षिक वर्गणीच्या याद्या आहेत.' }
     ]
   },
   deity: {
     label: 'देवी माता',
     title: 'भगवती देवी',
-    description: 'भगवती देवी या कोकण प्रदेशात शांत, परंतु शक्तिशाली रूपात पूजल्या जातात. त्या धैर्य, कृपा आणि ज्ञान या तिन्ही ऊर्जा व्यक्त करतात.',
+    description: 'उपलब्ध पुस्तिकेच्या मुखपृष्ठावर श्री भगवती देवीचे भक्तिपूर्ण चित्र आहे. मूर्तीविषयीचे तपशीलवार ऐतिहासिक दावे या पुस्तिकेतून प्रमाणित होत नाहीत.',
     iconographyTitle: 'पवित्र प्रतिके',
     imageAlt: 'भगवती देवी पवित्र कलाकृती',
-    symbols: [
-      { name: 'त्रिशूल (Trident)', meaning: 'तीन गुणांचे समतोल दर्शवते आणि तिन्ही पातळ्यांवर प्रभुत्व.' },
-      { name: 'सुवर्ण कमळ (Golden Lotus)', meaning: 'अनित्यतेत शुद्धता आणि आध्यात्मिक जागृतीचे प्रतिक.' },
-      { name: 'शंख (Conch)', meaning: 'सृष्टीचा आदिम नाद, पवित्रता आणणारा.' },
-      { name: 'दिवा (Oil Lamp)', meaning: 'अज्ञानावर ज्ञानाचा प्रकाश फेकण्याचे प्रतिक.' }
-    ]
+    symbols: []
   },
   temple: {
-    sectionLabel: 'देवस्थान',
-    title: 'पवित्र आराधनागृह',
-    architecture: 'आमचे मंदिर कोकणाच्या लाकडी आणि दगडी कलाकृतीचे अद्भुत उदाहरण आहे...',
-    dailyTitle: 'दैनंदिन विधी',
-    rituals: [
-      { time: '05:30 AM', name: 'काकड आरती', description: 'प्रातःकालीन आरती आणि दीपप्रज्वलन.' },
-      { time: '08:00 AM', name: 'अभिषेक आणि श्रृंगार', description: 'देवतेचे पवित्र स्नान व श्रृंगार.' },
-      { time: '12:00 PM', name: 'महानैवेध्य', description: 'देवतेला खास समारंभिक अन्न.' },
-      { time: '07:00 PM', name: 'महाआर्ते आणि दीपोत्सव', description: 'संध्याकाळी हजारो दिवे लावण्यात येतात.' }
-    ],
-    imageAlt: 'देवस्थान लाल चिरा वास्तुकला',
-    bellNote: '*घंटा वाजवण्यासाठी प्रतीक क्लिक करा. पवित्र धुर मंदिरात वर जातो.',
+    sectionLabel: 'श्री भगवती',
+    title: 'भक्तिपूर्ण प्रतिमा',
+    architecture: 'उपलब्ध पुस्तिकेत श्री भगवती प्रतिष्ठानचे नाव आणि श्री भगवती देवीचे भक्तिपूर्ण चित्र आहे. वास्तुशिल्पाचे तपशील आणि दैनंदिन विधींच्या वेळा त्यात दिलेल्या नाहीत.',
+    dailyTitle: 'विधींचे वेळापत्रक',
+    rituals: [],
+    imageAlt: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र',
+    bellNote: '',
     ringBellAria: 'घंटा वाजवा'
   },
   gallery: {
-    label: 'दृश्य कालक्रम',
+    label: 'चित्रे',
     title: 'चित्रदालन',
-    intro: 'पारंपारिक फोटो, वास्तु रचना, नूतनीकरण कामे आणि उत्सवाचे क्षण जपलेले आहेत.',
+    intro: 'पडताळलेली ऐतिहासिक तारीख किंवा ठिकाण नसलेली छायाचित्रे येथे स्वतंत्रपणे दाखवली आहेत.',
     filters: ['all', 'devi', 'temple', 'festivals'],
     categoryLabels: {
       all: 'सर्व',
@@ -101,11 +89,11 @@ const mr: Translation = {
       festivals: 'उत्सव'
     },
     items: [
-      { id: 'g1', title: 'पवित्र मंदिर प्रतिमा', category: 'devi', imageUrl: templeImage, year: 'वर्तमान', description: 'मंदिर गाभाऱ्याचे आणि पवित्र परिसराचे भक्तीपूर्ण दृश्य.' },
-      { id: 'g2', title: 'भगवती देवी प्रतिमा', category: 'devi', imageUrl: bhagavatiDeviImage, year: 'वर्तमान', description: 'श्री भगवती देवीची प्रामाणिक भक्तीपूर्ण प्रतिमा.' },
-      { id: 'g3', title: 'अरबी समुद्र दृश्य', category: 'temple', imageUrl: bestViewImage, year: 'वर्तमान', description: 'रत्नागिरी किल्ल्याच्या मंदिर परिसरातून अरबी समुद्राचे panoramika दृश्य.' },
-      { id: 'g4', title: 'रत्नागिरी किनारपट्टी', category: 'temple', imageUrl: cityViewImage, year: 'वर्तमान', description: 'मंदिराच्या डोंगरावरून रत्नागिरी शहर आणि कोकण किनारपट्टीचे दृश्य.' },
-      { id: 'g5', title: 'पवित्र मंदिर दृष्य', category: 'temple', imageUrl: backsideViewImage, year: 'वर्तमान', description: 'भगवती मंदिर परिसरातून किल्ला आणि आसपासचे landschap पाहिले जाणारे दृश्य.' }
+      { id: 'g1', title: 'चित्र १', category: 'devi', imageUrl: templeImage, description: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र.' },
+      { id: 'g2', title: 'चित्र २', category: 'devi', imageUrl: bhagavatiDeviImage, description: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र.' },
+      { id: 'g3', title: 'चित्र ३', category: 'temple', imageUrl: bestViewImage, description: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र.' },
+      { id: 'g4', title: 'चित्र ४', category: 'temple', imageUrl: cityViewImage, description: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र.' },
+      { id: 'g5', title: 'चित्र ५', category: 'temple', imageUrl: backsideViewImage, description: 'संकेतस्थळासोबत उपलब्ध असलेले चित्र.' }
     ],
     lightbox: { close: 'लाइटबॉक्स बंद करा', previous: 'मागील चित्र', next: 'पुढचे चित्र' }
   },
@@ -169,9 +157,11 @@ const mr: Translation = {
     heritageLabel: 'कुटुंब वारसा कथा'
   },
   archive: {
-    sectionLabel: 'पुराभिलेख',
-    title: 'डिजिटल पुराभिलेख',
-    intro: 'शतके जुने कुटुंब नोंदी, राजकीय परवाने, हस्तलिखिते आणि भाषांतरित प्रत.',
+    sectionLabel: 'अधिकृत प्रकाशन',
+    title: 'श्री भगवती प्रतिष्ठान पुस्तिका',
+    intro: 'उपलब्ध मराठी पुस्तिकेत कार्यकारी मंडळाची माहिती, सूचना आणि वार्षिक वर्गणीच्या याद्या आहेत.',
+    sourceBookletTitle: 'श्री भगवती प्रतिष्ठान (मराठी)',
+    sourceBookletDescription: 'संस्थेचे नाव आणि ठिकाण पडताळण्यासाठी उपलब्ध पुस्तिका वापरली. वैयक्तिक संपर्क तपशील आणि वर्गणीच्या रकमा येथे दिलेल्या नाहीत.',
     searchPlaceholder: 'हस्तलिखिते, प्रत, पत्रे शोधा...',
     filters: ['सर्व', 'हस्तलिखिते', 'पत्रे', 'प्रमाणपत्र', 'नोंदी'],
     noResults: 'आपल्या शोधाशी कोणतेही दस्तऐवज जुळले नाहीत.',
@@ -179,7 +169,7 @@ const mr: Translation = {
     viewDoc: 'दस्तऐवज पहा',
     pdfLabel: 'पीडीएफ दस्तऐवज',
     attachedDocumentPrefix: 'जोडलेले दस्तऐवज:',
-    downloadScan: 'आर्काइव्ह स्कॅन डाउनलोड करा',
+    downloadScan: 'मूळ पुस्तिका उघडा',
     downloadAlert: 'डाउनलोड अनुकरण करत आहोत. मूळ उच्च-रिझोल्यूशन TIFF पॅक केलेले आहे.'
   },
   oralHistory: {
@@ -203,20 +193,20 @@ const mr: Translation = {
       { id: 'v1', title: 'The Kartik Deepotsav Celebration (Full Video)', description: 'A beautiful visual documentary showcasing the lighting of 1008 clay lamps around the temple and the evening processional chants.', duration: '5:24', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-candles-burning-in-a-dark-room-41662-large.mp4', thumbnailUrl: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=500' },
       { id: 'v2', title: 'Restoring the Laterite Stone Sanctum', description: 'A quiet time-lapse and explanation of the lime-plastering technique used by master stonemasons during the 2018 renovation.', duration: '8:12', videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-hands-carving-a-stone-block-43033-large.mp4', thumbnailUrl: 'https://images.unsplash.com/photo-1590069261209-f8e9b8642343?q=80&w=500' }
     ],
-    fallback: 'आपला ब्राउझर व्हिडिओ टॅग समर्थित नाही.',
+    fallback: 'व्हिडिओ पूर्वावलोकन सध्या उपलब्ध नाही.',
     videoClipLabel: 'व्हिडिओ क्लिप ({duration})'
   },
   donation: {
-    sectionLabel: 'दान',
-    title: 'व्यवस्थापनासाठी पाठिंबा',
-    intro: 'शतके जुना सार्वजनिक विश्वस्त म्हणून आमची देणग्या मंदिर देखभाल, क्लिनिक सेवा आणि शैक्षणिक निधींसाठी वापरल्या जातात.',
-    upiTitle: 'UPI स्कॅन करून दान करा',
-    qrAlt: 'दान UPI QR कोड',
-    scanInstructions: 'BHIM, UPI, GPAY किंवा PhonePe वापरा',
+    sectionLabel: 'देणगी',
+    title: 'देणगीविषयक माहिती',
+    intro: 'उपलब्ध पुस्तिकेत वार्षिक वर्गणीची यादी आहे; मात्र इलेक्ट्रॉनिक पेमेंट किंवा बँक हस्तांतरणाचे तपासलेले तपशील दिलेले नाहीत.',
+    upiTitle: 'पेमेंट तपशील उपलब्ध नाहीत',
+    qrAlt: 'तपासलेला देणगी QR कोड उपलब्ध नाही',
+    scanInstructions: 'रक्कम पाठवण्यापूर्वी श्री भगवती प्रतिष्ठानकडून सध्याचे पेमेंट तपशील थेट पडताळा.',
     bankLabels: { bankName: 'बँकेचे नाव', accountName: 'खाते नाव', accountNumber: 'खाते क्रमांक', ifsc: 'IFSC कोड', branch: 'शाखा' },
-    directRemittanceTitle: 'थेट बँक हस्तांतरण',
-    transparencyTitle: 'पारदर्शकता वचन',
-    transparencyStatement: 'सर्व निधी सार्वजनिक विश्वस्त पारदर्शकतेत व्यवस्थापित केले जातात आणि फक्त मंदिर देखभाल, समुदाय आरोग्य आणि शिक्षणासाठी वापरले जातात.'
+    directRemittanceTitle: 'बँक हस्तांतरण तपशील उपलब्ध नाहीत',
+    transparencyTitle: 'देणगीपूर्वी पडताळणी करा',
+    transparencyStatement: 'उपलब्ध पुस्तिकेत बँक खाते, UPI ID किंवा QR कोडची पडताळणी नसल्याने ते येथे दिलेले नाहीत.'
   },
   contact: {
     sectionLabel: 'व्यवस्थापन',
@@ -229,57 +219,51 @@ const mr: Translation = {
     emailResponseTime: 'आम्ही 48 तासांत उत्तर देतो'
   },
   location: {
-    sectionLabel: 'तीर्थयात्रा',
-    title: 'देवस्थानाचे ठिकाण आणि दर्शनाची वेळ',
-    intro: 'रत्नागिरीमध्ये श्री भगवती देवस्थानास भेट देणाऱ्यांसाठी मार्गदर्शक आणि नकाशे.',
-    address: 'Shree Bhagavati Temple Valley, Devasthan Road, Dabhol Taluka, Ratnagiri District, Maharashtra - 415706',
-    landmarks: ['Dabhol Ferry Creek जेटीपासून 6 किमी पूर्वेस', 'प्राचीन देवराई (पवित्र जंगल) च्या मागे'],
-    parking: 'देवळाच्या प्रवेशद्वाराजवळ विनामूल्य पार्किंग उपलब्ध आहे. वाहने बाह्य दगडी वेशपर्यंत जाऊ नयेत.',
-    visitingHours: 'दररोज: 05:00 AM – 12:30 PM, आणि 04:30 PM – 09:00 PM. (दुपारची विश्रांती पाळली जाते).',
+    sectionLabel: 'पत्ता',
+    title: 'प्रतिष्ठानाचा पत्ता',
+    intro: 'उपलब्ध पुस्तिकेत प्रतिष्ठानचा पत्ता पुढीलप्रमाणे दिला आहे.',
+    address: 'नवघर, मालगुंड, रत्नागिरी, महाराष्ट्र',
+    landmarks: [],
+    parking: '',
+    visitingHours: '',
     addressLabel: 'पत्ता',
     visitingHoursLabel: 'दर्शनाची वेळ',
     landmarksLabel: 'मुख्य ठिकाणे',
     parkingLabel: 'पर्यावरण व पार्किंग'
   },
   // compatibility fields
-  siteTitle: 'श्री भगवती देवी कुटुंब विश्वस्त',
-  metaDescription: 'देवस्थान, विधी आणि कुटुंबाच्या पुराभिलेखांचे डिजिटल संरक्षण करणारा एक सतत चालणारा वारसा प्रकल्प.',
+  siteTitle: 'श्री भगवती प्रतिष्ठान',
+  metaDescription: 'नवघर, मालगुंड, रत्नागिरी येथील श्री भगवती प्रतिष्ठानची अधिकृत माहिती आणि मराठी पुस्तिका.',
   nav: {
-    about: 'आमच्या विषयी',
-    devi: 'देवी',
+    story: 'इतिहास',
     temple: 'देवस्थान',
-    legacy: 'वारसा',
-    timeline: 'कालरेखा',
-    gallery: 'चित्रदालन',
-    festivals: 'उत्सव',
     archive: 'पुराभिलेख',
+    visit: 'भेट द्या',
     donation: 'दान',
-    location: 'ठिकाण',
-    contact: 'संपर्क'
   },
   sections: {
-    about: 'कुटुंब विश्वस्ताविषयी',
-    trust: 'विश्वस्त व्यवस्थापन',
-    values: 'मूलभूत मूल्ये'
+    about: 'प्रतिष्ठानाविषयी',
+    trust: 'पुस्तिकेत नोंदलेली माहिती',
+    values: 'प्रकाशित तपशील'
   },
   footer: {
     sacredQuoteDevanagari: '“परित्राणाय साधूनां विनाशाय च दुष्कृताम् । धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ॥”',
-    trustName: 'श्री भगवती देवी देवस्थान चॅरिटेबल ट्रस्ट',
-    registration: 'बॉम्बे सार्वजनिक ट्रस्ट्स एक्ट, 1950 अंतर्गत नोंदणीकृत | नोंदणी क्र. E-281 (रत्नागिरी)',
-    copyright: '© {year} श्री भगवती देवी कुटुंब विश्वस्त. सर्व हक्क सुरक्षित.'
+    trustName: 'श्री भगवती प्रतिष्ठान',
+    registration: '',
+    copyright: '© {year} श्री भगवती प्रतिष्ठान. सर्व हक्क राखीव.'
   },
   forms: {},
   accessibility: {
     skipToMain: 'मुख्य मजकूरावर जा',
-    logoAlt: 'भगवती देवी ट्रस्ट लोगो',
+    logoAlt: 'श्री भगवती प्रतिष्ठान',
     toggleMenu: 'नेव्हिगेशन मेनू टॉगल करा',
     biographyFor: 'या व्यक्तीचे चरित्र तपशील: {name}',
     documentViewerFor: 'दस्तऐवज दृश्यासाठी: {title}',
     timelineEventFor: 'वर्ष {year} साठी कालरेखा घटना: {title}'
   },
   metadata: {
-    keywords: 'भगवती देवी, कुटुंब विश्वस्त, रत्नागिरी, कोकण मंदिर, वारसा आर्काइव्ह, पानपत्र हस्तलिखिते, वैदिक पठण, डिजिटल संग्रह',
-    author: 'श्री भगवती देवी कुटुंब विश्वस्त'
+    keywords: 'श्री भगवती प्रतिष्ठान, नवघर, मालगुंड, रत्नागिरी',
+    author: 'श्री भगवती प्रतिष्ठान'
   }
 };
 

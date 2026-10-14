@@ -16,7 +16,7 @@ export default function Footer() {
       {/* Metadata / Registration */}
       <div className="footer-meta">
         <span>{t.footer.trustName}</span>
-        <span>{t.footer.registration}</span>
+        {t.footer.registration && <span>{t.footer.registration}</span>}
         <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '10px' }}>
           {t.footer.copyright.replace('{year}', String(currentYear))}
         </span>

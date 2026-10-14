@@ -46,8 +46,16 @@ export default function Archive() {
         <p className="story-text">{t.archive.intro}</p>
       </div>
 
+      <div className="archive-source-record">
+        <FileText size={28} strokeWidth={1.4} aria-hidden="true" />
+        <div>
+          <h3>{t.archive.sourceBookletTitle}</h3>
+          <p>{t.archive.sourceBookletDescription}</p>
+        </div>
+      </div>
+
       {/* Controls: Search and Filter */}
-      <div className="archive-controls">
+      {archiveDocuments.length > 0 && <div className="archive-controls">
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
           <Search
             size={18}
@@ -76,10 +84,10 @@ export default function Archive() {
             </button>
           ))}
         </div>
-      </div>
+      </div>}
 
       {/* Grid listing */}
-      <div className="archive-grid">
+      {archiveDocuments.length > 0 && <div className="archive-grid">
         {filteredDocs.map((doc) => (
           <motion.div
             key={doc.id}
@@ -142,7 +150,7 @@ export default function Archive() {
             </p>
           </div>
         )}
-      </div>
+      </div>}
 
       {/* Document Viewer Modal Overlay */}
       <AnimatePresence>

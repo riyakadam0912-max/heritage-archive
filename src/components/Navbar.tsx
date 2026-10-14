@@ -6,46 +6,39 @@ import { useLanguage } from '../hooks/useLanguage';
 import { resolveAssetUrl } from '../utils/image';
 
 const navItems = [
-  { key: 'about', target: 'about' },
-  { key: 'devi', target: 'devi' },
-  { key: 'temple', target: 'temple' },
-  { key: 'legacy', target: 'legacy' },
-  { key: 'timeline', target: 'timeline' },
-  { key: 'gallery', target: 'gallery' },
-  { key: 'festivals', target: 'festivals' },
-  { key: 'archive', target: 'archive' },
-  { key: 'donation', target: 'donation' },
-  { key: 'location', target: 'location' },
+  { key: 'story', target: 'about', sections: ['about', 'devi'] },
+  { key: 'temple', target: 'temple', sections: ['temple'] },
+  { key: 'archive', target: 'archive', sections: ['gallery', 'archive'] },
+  { key: 'visit', target: 'location', sections: ['location'] },
+  { key: 'donation', target: 'donation', sections: ['donation'] },
 ];
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate scroll progress
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-      setScrollProgress(progress);
+      let currentItem = 'home';
+      let currentSectionTop = Number.NEGATIVE_INFINITY;
 
-      // Determine active section based on scroll offset
-      const sections = navItems.map((item) => document.getElementById(item.target));
-      let currentSection = 'home';
-
-      for (const section of sections) {
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= 150) {
-            currentSection = section.id;
+      for (const item of navItems) {
+        for (const sectionId of item.sections) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop <= 150 && sectionTop > currentSectionTop) {
+              currentItem = item.key;
+              currentSectionTop = sectionTop;
+            }
           }
         }
       }
-      setActiveSection(currentSection);
+      setActiveSection(currentItem);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -65,12 +58,11 @@ export default function Navbar() {
         <div className="logo-container">
           <div className="logo-border"></div>
           {/* Logo inner with Bhagavati Artwork */}
-          <div
+          <img
             className="logo-inner"
-            style={{ backgroundImage: `url(${resolveAssetUrl(mockTrustData.logoUrl)})` }}
-            role="img"
-            aria-label={t.accessibility.logoAlt}
-          ></div>
+            src={resolveAssetUrl(mockTrustData.logoUrl)}
+            alt={t.accessibility.logoAlt}
+          />
         </div>
         <span className="nav-title">{t.navigation.title}</span>
       </div>
@@ -92,11 +84,11 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li
               key={item.target}
-              className={`nav-item ${activeSection === item.target ? 'active' : ''}`}
+              className={`nav-item ${item.key === 'donation' ? 'nav-item-donate' : ''} ${activeSection === item.key ? 'active' : ''}`}
             >
-                    <a href={`#${item.target}`} onClick={(e) => handleNavClick(e, item.target)}>
-                  {t.nav?.[item.key as keyof typeof t.nav] ?? t.navigation.items[item.key as keyof typeof t.navigation.items] ?? ''}
-                </a>
+              <a href={`#${item.target}`} onClick={(e) => handleNavClick(e, item.target)}>
+                {t.nav?.[item.key as keyof typeof t.nav] ?? t.navigation.items[item.key as keyof typeof t.navigation.items] ?? ''}
+              </a>
             </li>
           ))}
         </ul>
@@ -114,42 +106,16 @@ export default function Navbar() {
 
       {/* Mobile Links overlay */}
       {isMobileMenuOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            width: '100%',
-            background: 'var(--bg-parchment)',
-            borderBottom: '1.5px solid var(--accent-gold)',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
-            zIndex: 999,
-          }}
-        >
-          <ul
-            style={{
-              listStyle: 'none',
-              padding: '20px 0',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '20px',
-            }}
-          >
+        <div className="mobile-nav-menu">
+          <ul className="mobile-nav-links">
             {navItems.map((item) => (
               <li
                 key={item.target}
-                className={`nav-item ${activeSection === item.target ? 'active' : ''}`}
+                className={`nav-item ${item.key === 'donation' ? 'nav-item-donate' : ''} ${activeSection === item.key ? 'active' : ''}`}
               >
                 <a
                   href={`#${item.target}`}
                   onClick={(e) => handleNavClick(e, item.target)}
-                  style={{
-                    fontSize: '1rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    fontWeight: 500,
-                  }}
                 >
                   {t.nav?.[item.key as keyof typeof t.nav] ?? t.navigation.items[item.key as keyof typeof t.navigation.items] ?? ''}
                 </a>
@@ -158,9 +124,6 @@ export default function Navbar() {
           </ul>
         </div>
       )}
-
-      {/* Top scroll progress indicator bar */}
-      <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }}></div>
     </nav>
   );
 }

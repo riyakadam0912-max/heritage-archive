@@ -39,6 +39,7 @@ export default function BhagavatiDevi() {
             {deityDescription}
           </p>
 
+          {deitySymbols.length > 0 && <>
           <h3
             style={{
               fontFamily: 'var(--font-serif-heading)',
@@ -64,6 +65,7 @@ export default function BhagavatiDevi() {
               );
             })}
           </div>
+          </>}
         </motion.div>
 
         {/* Parallax Image Frame */}

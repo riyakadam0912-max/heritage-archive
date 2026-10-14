@@ -13,17 +13,10 @@ import { resolveAssetUrl } from './utils/image';
 const AboutTrust = lazy(() => import('./components/AboutTrust'));
 const BhagavatiDevi = lazy(() => import('./components/BhagavatiDevi'));
 const Temple = lazy(() => import('./components/Temple'));
-const FamilyLegacy = lazy(() => import('./components/FamilyLegacy'));
-const FamilyTree = lazy(() => import('./components/FamilyTree'));
-const Timeline = lazy(() => import('./components/Timeline'));
 const Gallery = lazy(() => import('./components/Gallery'));
-const Festivals = lazy(() => import('./components/Festivals'));
 const Archive = lazy(() => import('./components/Archive'));
-const OralHistory = lazy(() => import('./components/OralHistory'));
-const VideoArchive = lazy(() => import('./components/VideoArchive'));
 const Donation = lazy(() => import('./components/Donation'));
 const Location = lazy(() => import('./components/Location'));
-const Contact = lazy(() => import('./components/Contact'));
 
 function LoadingSections() {
   const { t } = useLanguage();
@@ -120,37 +113,16 @@ export default function App() {
               <Temple />
 
               <DecorativeDivider />
-              <FamilyLegacy />
-
-              <DecorativeDivider />
-              <FamilyTree />
-
-              <DecorativeDivider />
-              <Timeline />
-
-              <DecorativeDivider />
               <Gallery />
 
               <DecorativeDivider />
-              <Festivals />
-
-              <DecorativeDivider />
               <Archive />
-
-              <DecorativeDivider />
-              <OralHistory />
-
-              <DecorativeDivider />
-              <VideoArchive />
 
               <DecorativeDivider />
               <Donation />
 
               <DecorativeDivider />
               <Location />
-
-              <DecorativeDivider />
-              <Contact />
             </Suspense>
           </main>
 
